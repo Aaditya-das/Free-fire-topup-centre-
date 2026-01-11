@@ -9,12 +9,11 @@
 
 <style>
 body{background:#0f1419;color:#fff}
-.nav-tabs .nav-link{color:#fff}
-.nav-tabs .nav-link.active{background:#ff4655;border:none}
 .card{background:#1a202c;border:none}
 .btn-buy{background:#ff4655;color:#fff;font-weight:bold}
 .qr-box{background:#fff;padding:10px;border-radius:10px;text-align:center}
-#thanks{display:none;color:#ffd166;font-weight:bold;text-align:center;margin-top:10px}
+#thanks{display:none;color:#00ff9c;font-weight:bold;text-align:center}
+.whatsapp-btn{background:#25D366;color:#fff;font-weight:bold}
 </style>
 </head>
 
@@ -23,33 +22,7 @@ body{background:#0f1419;color:#fff}
 <div class="container mt-3">
 <h3 class="text-center mb-3">🔥 Aaditya Top Up Centre 🔥</h3>
 
-<ul class="nav nav-tabs justify-content-center">
-<li class="nav-item">
-<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#diamonds">💎 Diamonds</button>
-</li>
-<li class="nav-item">
-<button class="nav-link" data-bs-toggle="tab" data-bs-target="#membership">🎟 Membership</button>
-</li>
-<li class="nav-item">
-<button class="nav-link" data-bs-toggle="tab" data-bs-target="#levelup">📊 Level Up</button>
-</li>
-</ul>
-
-<div class="tab-content mt-3">
-
-<div class="tab-pane fade show active" id="diamonds">
-<div class="row g-3" id="diamondList"></div>
-</div>
-
-<div class="tab-pane fade" id="membership">
-<div class="row g-3" id="memberList"></div>
-</div>
-
-<div class="tab-pane fade" id="levelup">
-<div class="row g-3" id="levelList"></div>
-</div>
-
-</div>
+<div class="row g-3" id="packageList"></div>
 </div>
 
 <!-- PAYMENT MODAL -->
@@ -65,12 +38,12 @@ method="POST"
 enctype="multipart/form-data">
 
 <input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
-<input type="hidden" name="Package" id="pkg">
-<input type="hidden" name="Amount" id="amt">
+<input type="hidden" name="_subject" value="🔥 New Free Fire Top-Up Order">
+<input type="hidden" name="Selected Package" id="pkg">
+<input type="hidden" name="Amount Paid" id="amt">
 
-<input class="form-control mt-2" id="uid" name="Free Fire UID" placeholder="Free Fire UID" required>
-<input class="form-control mt-2" id="player" name="Player Name" placeholder="Player Name" required>
+<input class="form-control mt-2" name="Free Fire UID" placeholder="Free Fire UID" required>
+<input class="form-control mt-2" name="Player Name" placeholder="Player Name" required>
 
 <div class="qr-box mt-3">
 <b>Pay via eSewa</b><br>
@@ -82,7 +55,16 @@ enctype="multipart/form-data">
 <button class="btn btn-buy w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
-<div id="thanks">✅ Thank you! Order received.<br>Website ready for new order.</div>
+<div id="thanks">
+✅ Thank you! Order received.<br>
+Ready for new order.<br><br>
+
+<a class="btn whatsapp-btn w-100"
+href="https://wa.me/9779703078638?text=Hello%20Aaditya%20Top%20Up%20Centre,%20my%20order%20is%20late.%20Please%20check."
+target="_blank">
+📞 Contact on WhatsApp (If service is late)
+</a>
+</div>
 
 </div>
 </div>
@@ -93,67 +75,48 @@ enctype="multipart/form-data">
 <script>
 const modal = new bootstrap.Modal(document.getElementById("payModal"));
 
-const diamonds = [
-["115 Diamonds","₹100"],["240 Diamonds","₹200"],["355 Diamonds","₹295"],
-["480 Diamonds","₹395"],["610 Diamonds","₹530"],["850 Diamonds","₹710"],
-["965 Diamonds","₹810"],["1,090 Diamonds","₹910"],
-["1,240 Diamonds","₹1,010"],["1,480 Diamonds","₹1,240"],
-["1,720 Diamonds","₹1,430"],["1,960 Diamonds","₹1,620"],
-["2,090 Diamonds","₹1,615"],["2,530 Diamonds","₹2,150"],
-["5,060 Diamonds","₹4,800"],["7,590 Diamonds","₹6,700"],
-["10,120 Diamonds","₹8,600"],["20,240 Diamonds","₹16,200"]
+const packages=[
+["115 Diamonds","Rs.100"],
+["240 Diamonds","Rs.200"],
+["355 Diamonds","Rs.295"],
+["480 Diamonds","Rs.395"],
+["610 Diamonds","Rs.530"],
+["850 Diamonds","Rs.710"],
+["965 Diamonds","Rs.810"],
+["1,090 Diamonds","Rs.910"],
+["1,240 Diamonds","Rs.1010"],
+["1,480 Diamonds","Rs.1240"],
+["1,720 Diamonds","Rs.1430"],
+["1,960 Diamonds","Rs.1620"],
+["2,090 Diamonds","Rs.1615"],
+["2,530 Diamonds","Rs.2150"],
+["5,060 Diamonds","Rs.4800"],
+["7,590 Diamonds","Rs.6700"],
+["10,120 Diamonds","Rs.8600"],
+["20,240 Diamonds","Rs.16200"]
 ];
 
-const membership = [
-["Weekly","₹200"],["Monthly","₹1090"],["Weekly Lite","₹75"],["Level Up","₹790"]
-];
-
-const levelup = [
-["Level 6","₹85"],["Level 10","₹140"],["Level 15","₹140"],
-["Level 20","₹140"],["Level 25","₹140"],["Level 30","₹200"]
-];
-
-function createCards(list, target){
-list.forEach(i=>{
-document.getElementById(target).innerHTML+=`
-<div class="col-6 col-md-4 col-lg-3">
+packages.forEach(p=>{
+document.getElementById("packageList").innerHTML+=`
+<div class="col-6">
 <div class="card p-2 text-center">
-<b>${i[0]}</b>
-<p>${i[1]}</p>
-<button class="btn btn-buy w-100"
-onclick="buy('${i[0]}','${i[1]}')">BUY</button>
-</div></div>`;
+<b>${p[0]}</b>
+<p>${p[1]}</p>
+<button class="btn btn-buy"
+onclick="buy('${p[0]}','${p[1]}')">BUY</button>
+</div>
+</div>`;
 });
-}
 
-createCards(diamonds,"diamondList");
-createCards(membership,"memberList");
-createCards(levelup,"levelList");
-
-function buy(p,a){
-document.getElementById("pkg").value=p;
-document.getElementById("amt").value=a;
+function buy(pkg,amt){
+document.getElementById("pkg").value = pkg;
+document.getElementById("amt").value = amt;
 document.getElementById("thanks").style.display="none";
 modal.show();
 }
 
-// AFTER SUBMIT → WHATSAPP + THANK YOU
 document.getElementById("orderForm").addEventListener("submit",()=>{
 setTimeout(()=>{
-const pkg = document.getElementById("pkg").value;
-const amt = document.getElementById("amt").value;
-const uid = document.getElementById("uid").value;
-const player = document.getElementById("player").value;
-
-const phone = "97798XXXXXXXX"; // 🔴 CHANGE THIS
-const msg = `🔥 New Free Fire Order 🔥%0A
-Package: ${pkg}%0A
-Amount: ${amt}%0A
-UID: ${uid}%0A
-Player: ${player}`;
-
-window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
-
 document.getElementById("thanks").style.display="block";
 document.getElementById("orderForm").reset();
 },800);

@@ -115,12 +115,20 @@ document.getElementById("thanks").style.display="none";
 modal.show();
 }
 
-document.getElementById("orderForm").addEventListener("submit",()=>{
-setTimeout(()=>{
-document.getElementById("thanks").style.display="block";
-document.getElementById("orderForm").reset();
-},800);
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();   // stop page redirect
+
+  fetch(this.action, {
+    method: "POST",
+    body: new FormData(this)
+  }).then(() => {
+    document.getElementById("thanks").style.display = "block";
+    this.reset();
+  });
 });
+</script>
+  <body>
 </script>
 
 </body>

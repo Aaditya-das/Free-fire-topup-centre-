@@ -5,196 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aaditya Top Up Centre | Instant Free Fire Diamonds</title>
 
+<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-:root{
-    --primary-red:#FF4655;
-    --primary-orange:#FF8C42;
-    --primary-yellow:#FFD166;
-    --dark-bg:#0F1419;
-    --card-bg:#1A202C;
-    --text-light:#F7FAFC;
+body {
+    font-family: 'Exo 2', sans-serif;
+    background: #0F1419;
+    color: #fff;
+    margin: 0;
 }
-
-body{
-    margin:0;
-    font-family:'Exo 2', sans-serif;
-    background-color:var(--dark-bg);
-    color:var(--text-light);
-    overflow-x:hidden;
+.navbar {
+    background: rgba(26,32,44,0.95);
+    border-bottom: 2px solid #FF4655;
 }
-
-/* Floating diamonds animation */
-.diamond{
-    position:absolute;
-    color:var(--primary-yellow);
-    font-size:1.2rem;
-    opacity:0.8;
-    animation:float 8s linear infinite;
+.navbar-brand {
+    color: #FFD166;
+    font-weight: bold;
 }
-@keyframes float{
-    0%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(-50px) rotate(180deg);}
-    100%{transform:translateY(-100px) rotate(360deg);}
+.card {
+    background: #1A202C;
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-
-/* Navbar */
-.navbar{
-    background:rgba(26,32,44,0.95);
-    border-bottom:2px solid var(--primary-red);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
-.navbar-brand{
-    font-weight:bold;
-    color:var(--primary-yellow)!important;
+.btn-buy {
+    background: linear-gradient(to right,#FF4655,#FF8C42);
+    color: #fff;
+    border: none;
+    font-weight: bold;
 }
-.nav-link.active{
-    background:var(--primary-red)!important;
-    color:#fff!important;
+.qr-box {
+    background: #fff;
+    color: #000;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 15px 0;
 }
-
-/* Tabs */
-.nav-tabs .nav-link{
-    color:#fff;
+#thanks {
+    display: none;
+    color: #FFD166;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
 }
-.nav-tabs .nav-link.active{
-    background:var(--primary-red);
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    cursor: pointer;
 }
-
-/* Cards */
-.card{
-    background:var(--card-bg);
-    border:none;
-    border-radius:12px;
-}
-.btn-buy{
-    background:linear-gradient(to right,var(--primary-red),var(--primary-orange));
-    color:#fff;
-    font-weight:bold;
-}
-
-/* QR Box */
-.qr-box{
-    background:#fff;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
-    margin-top:15px;
-}
-
-/* Thank You Message */
-#thanks{
-    display:none;
-    color:var(--primary-yellow);
-    font-weight:bold;
-    text-align:center;
-    margin-top:10px;
-}
-
-/* WhatsApp Button */
-#whatsappSupport{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:#fff;
-    padding:12px 16px;
-    border-radius:50px;
-    font-size:1.3rem;
-    z-index:1000;
-    text-decoration:none;
-}
-
-/* Modal inputs */
-input, textarea{margin:5px 0;}
 </style>
 </head>
-
 <body>
-
-<!-- Floating Diamonds Background -->
-<div id="diamondContainer"></div>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-<div class="container">
-<a class="navbar-brand" href="#"><i class="fas fa-fire"></i> Aaditya Top Up Centre</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
-<li class="nav-item"><a class="nav-link" href="#adminLogin" onclick="openAdminLogin()">Admin</a></li>
-</ul>
-</div>
-</div>
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="fas fa-fire"></i> Aaditya Top Up Centre</a>
+  </div>
 </nav>
 
 <!-- Hero -->
-<section id="home" class="container text-center my-4">
-<h1>📌 Aaditya Top Up Centre 💎</h1>
-<p>Instant Free Fire Diamonds ⚡</p>
-</section>
-
-<!-- Tabs -->
-<section id="packages" class="container my-4">
-<ul class="nav nav-tabs justify-content-center">
-<li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#diamonds">💎 Diamonds</button></li>
-<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#membership">🎟 Membership</button></li>
-<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#levelup">📊 Level Up</button></li>
-</ul>
-
-<div class="tab-content mt-3">
-
-<!-- Diamonds -->
-<div class="tab-pane fade show active" id="diamonds">
-<div class="row g-3" id="diamondList"></div>
+<div class="container text-center my-4">
+    <h1>📌 Top-Up List 💎</h1>
+    <p>Aaditya Top Up Centre ⚡⚡</p>
 </div>
 
-<!-- Membership -->
-<div class="tab-pane fade" id="membership">
-<div class="row g-3" id="memberList"></div>
+<!-- Diamond Packages -->
+<div class="container">
+  <div class="row" id="diamondList"></div>
 </div>
-
-<!-- Level-Up -->
-<div class="tab-pane fade" id="levelup">
-<div class="row g-3" id="levelList"></div>
-</div>
-
-</div>
-</section>
 
 <!-- Payment Modal -->
-<div class="modal fade" id="payModal">
+<div class="modal fade" id="payModal" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered">
-<div class="modal-content bg-dark p-3">
+<div class="modal-content p-3" style="background:#1A202C;color:#fff;">
 
 <h5 class="text-center">Complete Payment</h5>
 
-<form id="orderForm"
-action="https://formsubmit.co/aadityadas4000@gmail.com"
-method="POST"
-enctype="multipart/form-data">
+<form id="orderForm" action="https://formsubmit.co/aadityadas4000@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="🔥 New Free Fire Order">
+    <input type="hidden" name="Package" id="pkg">
+    <input type="hidden" name="Amount" id="amt">
 
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
-<input type="hidden" name="Package" id="pkg">
-<input type="hidden" name="Amount" id="amt">
+    <input class="form-control mt-2" name="Free Fire UID" placeholder="Free Fire UID" required>
+    <input class="form-control mt-2" name="Player Name" placeholder="Player Name" required>
 
-<input class="form-control mt-2" name="Free Fire UID" placeholder="Free Fire UID" required>
-<input class="form-control mt-2" name="Player Name" placeholder="Player Name" required>
+    <div class="qr-box">
+        <b>Pay via eSewa</b><br>
+        <img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
+    </div>
 
-<div class="qr-box mt-3">
-<b>Pay via eSewa</b><br>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
-</div>
+    <input class="form-control mt-2" type="file" name="Payment Screenshot" required>
 
-<input class="form-control mt-2" type="file" name="Payment Screenshot" required>
-
-<button class="btn btn-buy w-100 mt-3">CONFIRM ORDER</button>
+    <button class="btn btn-buy w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
 <div id="thanks">✅ Thank you! Order received.<br>Ready for new order.</div>
@@ -203,92 +128,55 @@ enctype="multipart/form-data">
 </div>
 </div>
 
-<!-- WhatsApp Support -->
-<a id="whatsappSupport" href="https://wa.me/9779703078638" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/9779703078638" target="_blank" class="whatsapp-btn">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-<!-- Admin Login -->
-<div class="modal fade" id="adminLoginModal" tabindex="-1">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content p-3">
-<h5 class="text-center">🔐 Admin Login</h5>
-<input type="password" id="adminPass" class="form-control mt-2" placeholder="Enter Admin Password">
-<button class="btn btn-danger w-100 mt-2" onclick="adminLogin()">LOGIN</button>
-<p id="adminError" class="text-danger mt-2"></p>
-</div>
-</div>
-</div>
-
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-// Floating diamonds
-const diamondContainer = document.getElementById("diamondContainer");
-for(let i=0;i<40;i++){
-    const d=document.createElement("div");
-    d.classList.add("diamond");
-    d.style.left=Math.random()*100+"%";
-    d.style.top=Math.random()*100+"%";
-    d.style.fontSize=(10+Math.random()*20)+"px";
-    d.style.animationDuration=(5+Math.random()*5)+"s";
-    d.innerHTML="💎";
-    diamondContainer.appendChild(d);
-}
+// Diamond Packages
+const diamonds = [
+["115 Diamonds","₹100"],["240 Diamonds","₹200"],["355 Diamonds","₹295"],
+["480 Diamonds","₹395"],["610 Diamonds","₹530"],["850 Diamonds","₹710"],
+["965 Diamonds","₹810"],["1090 Diamonds","₹910"],["1240 Diamonds","₹1010"],
+["1480 Diamonds","₹1240"],["1720 Diamonds","₹1430"],["1960 Diamonds","₹1620"],
+["2090 Diamonds","₹1615"],["2530 Diamonds","₹2150"],["5060 Diamonds","₹4800"],
+["7590 Diamonds","₹6700"],["10120 Diamonds","₹8600"],["20240 Diamonds","₹16200"]
+];
 
-// Packages
-const diamonds=[["115 Diamonds","₹100"],["240 Diamonds","₹200"],["355 Diamonds","₹295"],["480 Diamonds","₹395"],["610 Diamonds","₹530"],["850 Diamonds","₹710"],["965 Diamonds","₹810"],["1090 Diamonds","₹910"],["1240 Diamonds","₹1010"],["1480 Diamonds","₹1240"],["1720 Diamonds","₹1430"],["1960 Diamonds","₹1620"],["2090 Diamonds","₹1615"],["2530 Diamonds","₹2150"],["5060 Diamonds","₹4800"],["7590 Diamonds","₹6700"],["10120 Diamonds","₹8600"],["20240 Diamonds","₹16200"]];
-const membership=[["Weekly","₹200"],["Monthly","₹1090"],["Weekly Lite","₹75"],["Level Up","₹790"]];
-const levelup=[["Level 6","₹85"],["Level 10","₹140"],["Level 15","₹140"],["Level 20","₹140"],["Level 25","₹140"],["Level 30","₹200"]];
+const diamondList = document.getElementById("diamondList");
 
-function createCards(list,target){
-    document.getElementById(target).innerHTML="";
-    list.forEach(i=>{
-        document.getElementById(target).innerHTML+=
-        `<div class="col-6 col-md-3">
-        <div class="card p-2 text-center">
-        <b>${i[0]}</b>
-        <p>${i[1]}</p>
-        <button class="btn btn-buy w-100" onclick="buy('${i[0]}','${i[1]}')">BUY</button>
-        </div></div>`;
-    });
-}
+diamonds.forEach(d=>{
+    const col = document.createElement("div");
+    col.className = "col-md-4 col-lg-3";
+    col.innerHTML = `<div class="card">
+        <b>${d[0]}</b>
+        <p>${d[1]}</p>
+        <button class="btn btn-buy w-100 mt-2" onclick="buy('${d[0]}','${d[1]}')">Select</button>
+    </div>`;
+    diamondList.appendChild(col);
+});
 
-createCards(diamonds,"diamondList");
-createCards(membership,"memberList");
-createCards(levelup,"levelList");
-
-// Modal
+// Modal logic
 const modal = new bootstrap.Modal(document.getElementById("payModal"));
-function buy(pkg,amt){
-    document.getElementById("pkg").value=pkg;
-    document.getElementById("amt").value=amt;
-    document.getElementById("thanks").style.display="none";
+
+function buy(pkg, amt){
+    document.getElementById("pkg").value = pkg;
+    document.getElementById("amt").value = amt;
+    document.getElementById("thanks").style.display = "none";
     modal.show();
 }
 
 // After submit
-document.getElementById("orderForm").addEventListener("submit",(e)=>{
+document.getElementById("orderForm").addEventListener("submit", function(e){
     setTimeout(()=>{
-        document.getElementById("thanks").style.display="block";
+        document.getElementById("thanks").style.display = "block";
         document.getElementById("orderForm").reset();
     },800);
 });
-
-// Admin
-function openAdminLogin(){
-    var adminModal=new bootstrap.Modal(document.getElementById("adminLoginModal"));
-    adminModal.show();
-}
-
-function adminLogin(){
-    const password=document.getElementById("adminPass").value;
-    if(password==="Aaditya@123"){
-        alert("✅ Admin Logged In! Open Gmail to see orders.");
-        window.open("https://mail.google.com","_blank");
-    }else{
-        document.getElementById("adminError").innerText="Wrong password ❌";
-    }
-}
 </script>
 
 </body>
-  </html>
+    </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Fire Diamond Top Up</title>
+<title>Aaditya Top Up Centre</title>
 
 <style>
 body{
@@ -12,14 +12,16 @@ body{
   background:#f4f6ff;
 }
 
+/* HEADER */
 header{
-  background:#fff;
-  padding:12px 20px;
+  background:#ffffff;
+  padding:14px 20px;
   font-weight:bold;
   color:#ff4655;
   box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
+/* HERO */
 .hero{
   margin:15px;
   padding:30px;
@@ -30,18 +32,10 @@ header{
   align-items:center;
   color:white;
 }
-
-.hero h1{
-  font-size:26px;
-}
-
-.hero p{
-  opacity:.9;
-}
-
+.hero h1{font-size:26px}
 .hero-btn{
   display:inline-block;
-  margin-top:15px;
+  margin-top:12px;
   padding:10px 22px;
   background:#ff4655;
   color:white;
@@ -49,45 +43,54 @@ header{
   text-decoration:none;
   font-weight:600;
 }
-
 .hero-diamond{
   font-size:90px;
   animation:float 3s ease-in-out infinite;
 }
-
 @keyframes float{
   0%{transform:translateY(0)}
   50%{transform:translateY(-15px)}
   100%{transform:translateY(0)}
 }
 
+/* CONTAINER */
 .container{
   background:white;
   margin:15px;
   padding:20px;
   border-radius:18px;
 }
-
 h2{
   text-align:center;
   color:#4c4cff;
 }
 
-input{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
+/* TABS */
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:10px;
   margin-bottom:15px;
-  border-radius:10px;
-  border:1px solid #ccc;
+}
+.tabs button{
+  padding:8px 14px;
+  border:none;
+  border-radius:20px;
+  background:#e0e4ff;
+  cursor:pointer;
+  font-weight:bold;
+}
+.tabs button.active{
+  background:#ff4655;
+  color:white;
 }
 
+/* PACKAGES */
 .packages{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:12px;
 }
-
 .card{
   background:linear-gradient(180deg,#ffffff,#eef2ff);
   border-radius:18px;
@@ -95,26 +98,18 @@ input{
   text-align:center;
   box-shadow:0 6px 15px rgba(0,0,0,.15);
 }
-
-.card b{
-  display:block;
-  font-size:16px;
-}
-
-.card p{
-  font-weight:700;
-  color:#5b6cff;
-}
-
+.card b{font-size:15px}
+.card p{font-weight:700;color:#5b6cff}
 .btn-buy{
   background:#ff4655;
   border:none;
   color:white;
-  padding:8px 14px;
+  padding:8px 16px;
   border-radius:30px;
   cursor:pointer;
 }
 
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -122,28 +117,38 @@ input{
   display:none;
   justify-content:center;
   align-items:center;
+  z-index:999;
 }
-
 .modal-box{
   background:white;
   padding:20px;
   border-radius:15px;
   width:90%;
-  max-width:320px;
-  text-align:center;
+  max-width:340px;
 }
-
 .modal img{
   width:100%;
   border-radius:10px;
   margin:10px 0;
 }
-
-.warning{
-  color:red;
-  font-size:13px;
+input{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
 
+/* THANK YOU */
+#thanks{
+  display:none;
+  text-align:center;
+  font-weight:bold;
+  color:green;
+  margin-top:10px;
+}
+
+/* WHATSAPP */
 .whatsapp{
   position:fixed;
   bottom:20px;
@@ -161,87 +166,130 @@ input{
 
 <body>
 
-<header>🔥 Free Fire Top Up</header>
+<header>🔥 Aaditya Top Up Centre</header>
 
 <section class="hero">
   <div>
-    <h1>Get Free Fire Diamonds Instantly 💎</h1>
-    <p>Fast • Safe • Reliable Top Up Service</p>
+    <h1>Free Fire Top-Up 💎</h1>
+    <p>Fast • Safe • Reliable</p>
     <a href="#topup" class="hero-btn">Top Up Now</a>
   </div>
   <div class="hero-diamond">💎</div>
 </section>
 
 <div class="container" id="topup">
-<h2>Top Up Your Account</h2>
 
-<input id="playerId" placeholder="Enter Player ID">
-<input id="playerName" placeholder="Player Name (Optional)">
+<div class="tabs">
+  <button class="active" onclick="showTab('diamonds')">💎 Diamonds</button>
+  <button onclick="showTab('membership')">🎟 Membership</button>
+  <button onclick="showTab('levelup')">📊 Level Up</button>
+</div>
 
-<div class="packages" id="packages"></div>
+<div id="diamonds" class="packages"></div>
+<div id="membership" class="packages" style="display:none"></div>
+<div id="levelup" class="packages" style="display:none"></div>
+
 </div>
 
 <!-- PAYMENT MODAL -->
 <div class="modal" id="payModal">
   <div class="modal-box">
-    <h3 id="pkgTitle"></h3>
-    <p id="pkgPrice"></p>
-    <img src="esewa-qr.jpg" alt="eSewa QR">
-    <p class="warning">⚠ Send exact amount only. Fake payment = Order cancelled.</p>
-    <button class="btn-buy" onclick="confirmPay()">Confirm Payment</button>
+
+<form id="orderForm"
+action="https://formsubmit.co/aadityadas4000@gmail.com"
+method="POST"
+enctype="multipart/form-data">
+
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
+<input type="hidden" name="Package" id="pkg">
+<input type="hidden" name="Amount" id="amt">
+
+<b id="pkgTitle"></b>
+<p id="pkgPrice"></p>
+
+<input name="Free Fire UID" placeholder="Free Fire UID" required>
+<input name="Player Name" placeholder="Player Name" required>
+
+<img src="esewa-qr.jpg" alt="eSewa QR">
+
+<input type="file" name="Payment Screenshot" accept="image/*" required>
+
+<button class="btn-buy" type="submit">Confirm Order</button>
+</form>
+
+<div id="thanks">✅ Thank you! Order received.<br>Ready for new order.</div>
+
   </div>
 </div>
 
 <!-- WHATSAPP -->
-<a class="whatsapp" target="_blank"
-href="https://wa.me/9779703078638">
+<a class="whatsapp" target="_blank" href="https://wa.me/9779703078638">
 WhatsApp Support
 </a>
 
 <script>
 const diamonds=[
-["115 Diamonds","Rs.100"],
-["240 Diamonds","Rs.200"],
-["355 Diamonds","Rs.295"],
-["480 Diamonds","Rs.395"],
-["610 Diamonds","Rs.530"],
-["850 Diamonds","Rs.710"],
-["965 Diamonds","Rs.810"],
-["1090 Diamonds","Rs.910"],
-["1240 Diamonds","Rs.1010"],
-["1480 Diamonds","Rs.1240"],
-["1720 Diamonds","Rs.1430"],
-["1960 Diamonds","Rs.1620"],
-["2090 Diamonds","Rs.1615"],
-["2530 Diamonds","Rs.2150"],
-["5060 Diamonds","Rs.4800"],
-["7590 Diamonds","Rs.6700"],
-["10120 Diamonds","Rs.8600"],
-["20240 Diamonds","Rs.16200"]
+["115 Diamonds","Rs.100"],["240 Diamonds","Rs.200"],["355 Diamonds","Rs.295"],
+["480 Diamonds","Rs.395"],["610 Diamonds","Rs.530"],["850 Diamonds","Rs.710"],
+["965 Diamonds","Rs.810"],["1090 Diamonds","Rs.910"],["1240 Diamonds","Rs.1010"],
+["1480 Diamonds","Rs.1240"],["1720 Diamonds","Rs.1430"],["1960 Diamonds","Rs.1620"],
+["2090 Diamonds","Rs.1615"],["2530 Diamonds","Rs.2150"],["5060 Diamonds","Rs.4800"],
+["7590 Diamonds","Rs.6700"],["10120 Diamonds","Rs.8600"],["20240 Diamonds","Rs.16200"]
 ];
 
-const box=document.getElementById("packages");
+const membership=[
+["Weekly","Rs.200"],["Monthly","Rs.1090"],
+["Weekly Lite","Rs.75"],["Level Up","Rs.790"]
+];
 
-diamonds.forEach(d=>{
-  box.innerHTML+=`
-  <div class="card">
-    <b>💎 ${d[0]}</b>
-    <p>${d[1]}</p>
-    <button class="btn-buy" onclick="buy('${d[0]}','${d[1]}')">Buy</button>
-  </div>`;
-});
+const levelup=[
+["Level 6 – 120💎","Rs.85"],["Level 10 – 200💎","Rs.140"],
+["Level 15 – 200💎","Rs.140"],["Level 20 – 200💎","Rs.140"],
+["Level 25 – 200💎","Rs.140"],["Level 30 – 350💎","Rs.200"]
+];
+
+function load(list,id){
+  const box=document.getElementById(id);
+  box.innerHTML="";
+  list.forEach(d=>{
+    box.innerHTML+=`
+    <div class="card">
+      <b>${d[0]}</b>
+      <p>${d[1]}</p>
+      <button class="btn-buy" onclick="buy('${d[0]}','${d[1]}')">Buy</button>
+    </div>`;
+  });
+}
+
+load(diamonds,"diamonds");
+load(membership,"membership");
+load(levelup,"levelup");
+
+function showTab(tab){
+  ["diamonds","membership","levelup"].forEach(t=>{
+    document.getElementById(t).style.display="none";
+  });
+  document.getElementById(tab).style.display="grid";
+
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+}
 
 function buy(pkg,price){
+  document.getElementById("pkg").value=pkg;
+  document.getElementById("amt").value=price;
   document.getElementById("pkgTitle").innerText=pkg;
   document.getElementById("pkgPrice").innerText=price;
   document.getElementById("payModal").style.display="flex";
 }
 
-function confirmPay(){
-  alert("✅ Thank you! Payment received.\nYour diamonds will be added shortly.");
-  document.getElementById("payModal").style.display="none";
-  window.location.href="#topup";
-}
+document.getElementById("orderForm").addEventListener("submit",()=>{
+  setTimeout(()=>{
+    document.getElementById("thanks").style.display="block";
+    document.getElementById("orderForm").reset();
+  },800);
+});
 </script>
 
 </body>

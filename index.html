@@ -3,97 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaditya Top Up Centre | Free Fire Diamonds</title>
+<title>Aaditya Top Up Centre | Instant Free Fire Diamonds</title>
 
-<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* COLORS & FONTS */
 :root{
-  --primary-red:#FF4655;
-  --primary-orange:#FF8C42;
-  --primary-yellow:#FFD166;
-  --dark-bg:#0F1419;
-  --card-bg:#1A202C;
-  --text-light:#F7FAFC;
+    --primary-red:#FF4655;
+    --primary-orange:#FF8C42;
+    --primary-yellow:#FFD166;
+    --dark-bg:#0F1419;
+    --card-bg:#1A202C;
+    --text-light:#F7FAFC;
 }
-body{background:var(--dark-bg);color:var(--text-light);font-family:'Exo 2',sans-serif;margin:0;padding:0;overflow-x:hidden;}
-h1,h2,h3,h4,h5,h6{font-family:'Orbitron',sans-serif;font-weight:900;}
 
-/* NAVBAR */
-.navbar{background:rgba(26,32,44,0.95);border-bottom:2px solid var(--primary-red);}
-.navbar-brand{color:var(--primary-yellow);font-weight:bold;}
-.nav-link{color:#fff;}
-.nav-link.active{color:var(--primary-yellow);}
+body{
+    margin:0;
+    font-family:'Exo 2', sans-serif;
+    background-color:var(--dark-bg);
+    color:var(--text-light);
+    overflow-x:hidden;
+}
 
-/* HERO */
-.hero{padding:40px;margin:30px auto;border:1px solid var(--primary-red);border-radius:15px;text-align:center;background:rgba(26,32,44,0.7);}
-.hero h1{color:var(--primary-yellow);margin-bottom:15px;}
-
-/* CARDS */
-.card{background:var(--card-bg);border:none;border-radius:12px;padding:15px;text-align:center;transition:all 0.3s;cursor:pointer;}
-.card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.5);}
-.package-header{background:linear-gradient(to right,var(--primary-red),var(--primary-orange));color:#fff;padding:10px;font-weight:bold;border-radius:8px 8px 0 0;}
-
-/* PAYMENT MODAL */
-.qr-box{background:#fff;padding:10px;border-radius:10px;text-align:center;margin:15px 0;}
-#thanks{display:none;color:#FFD166;font-weight:bold;text-align:center;margin-top:10px;}
-
-/* FLOATING DIAMONDS */
-.floating-diamond{position:absolute;width:30px;height:30px;color:#FFD166;font-size:25px;animation:float 10s linear infinite;opacity:0.7;}
+/* Floating diamonds animation */
+.diamond{
+    position:absolute;
+    color:var(--primary-yellow);
+    font-size:1.2rem;
+    opacity:0.8;
+    animation:float 8s linear infinite;
+}
 @keyframes float{
-  0%{transform:translateY(100vh) rotate(0deg);}
-  100%{transform:translateY(-50px) rotate(360deg);}
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-50px) rotate(180deg);}
+    100%{transform:translateY(-100px) rotate(360deg);}
 }
 
-/* WHATSAPP BUTTON */
-#whatsappSupport{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px;border-radius:50%;font-size:1.5rem;z-index:999;box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+/* Navbar */
+.navbar{
+    background:rgba(26,32,44,0.95);
+    border-bottom:2px solid var(--primary-red);
+}
+.navbar-brand{
+    font-weight:bold;
+    color:var(--primary-yellow)!important;
+}
+.nav-link.active{
+    background:var(--primary-red)!important;
+    color:#fff!important;
+}
+
+/* Tabs */
+.nav-tabs .nav-link{
+    color:#fff;
+}
+.nav-tabs .nav-link.active{
+    background:var(--primary-red);
+}
+
+/* Cards */
+.card{
+    background:var(--card-bg);
+    border:none;
+    border-radius:12px;
+}
+.btn-buy{
+    background:linear-gradient(to right,var(--primary-red),var(--primary-orange));
+    color:#fff;
+    font-weight:bold;
+}
+
+/* QR Box */
+.qr-box{
+    background:#fff;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    margin-top:15px;
+}
+
+/* Thank You Message */
+#thanks{
+    display:none;
+    color:var(--primary-yellow);
+    font-weight:bold;
+    text-align:center;
+    margin-top:10px;
+}
+
+/* WhatsApp Button */
+#whatsappSupport{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:#fff;
+    padding:12px 16px;
+    border-radius:50px;
+    font-size:1.3rem;
+    z-index:1000;
+    text-decoration:none;
+}
+
+/* Modal inputs */
+input, textarea{margin:5px 0;}
 </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
+<!-- Floating Diamonds Background -->
+<div id="diamondContainer"></div>
+
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
 <div class="container">
-  <a class="navbar-brand" href="#"><i class="fas fa-fire"></i> Aaditya Top Up Centre</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#topup">Top-Up</a></li>
-      <li class="nav-item"><a class="nav-link" href="#admin" onclick="openAdminLogin()">Admin</a></li>
-    </ul>
-  </div>
+<a class="navbar-brand" href="#"><i class="fas fa-fire"></i> Aaditya Top Up Centre</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+<li class="nav-item"><a class="nav-link" href="#adminLogin" onclick="openAdminLogin()">Admin</a></li>
+</ul>
+</div>
 </div>
 </nav>
 
-<!-- HERO -->
-<section id="home" class="container">
-<div class="hero">
-<h1>📌 Aaditya Top-Up List 💎</h1>
+<!-- Hero -->
+<section id="home" class="container text-center my-4">
+<h1>📌 Aaditya Top Up Centre 💎</h1>
 <p>Instant Free Fire Diamonds ⚡</p>
-<a href="#topup" class="btn btn-buy mt-3">VIEW ALL PACKAGES</a>
+</section>
+
+<!-- Tabs -->
+<section id="packages" class="container my-4">
+<ul class="nav nav-tabs justify-content-center">
+<li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#diamonds">💎 Diamonds</button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#membership">🎟 Membership</button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#levelup">📊 Level Up</button></li>
+</ul>
+
+<div class="tab-content mt-3">
+
+<!-- Diamonds -->
+<div class="tab-pane fade show active" id="diamonds">
+<div class="row g-3" id="diamondList"></div>
+</div>
+
+<!-- Membership -->
+<div class="tab-pane fade" id="membership">
+<div class="row g-3" id="memberList"></div>
+</div>
+
+<!-- Level-Up -->
+<div class="tab-pane fade" id="levelup">
+<div class="row g-3" id="levelList"></div>
+</div>
+
 </div>
 </section>
 
-<!-- PACKAGES -->
-<section id="topup" class="container mt-5">
-<div class="row g-3" id="packageList"></div>
-</section>
-
-<!-- PAYMENT MODAL -->
+<!-- Payment Modal -->
 <div class="modal fade" id="payModal">
 <div class="modal-dialog modal-dialog-centered">
 <div class="modal-content bg-dark p-3">
 
 <h5 class="text-center">Complete Payment</h5>
 
-<form id="orderForm" action="https://formsubmit.co/aadityadas4000@gmail.com" method="POST" enctype="multipart/form-data" target="hidden_iframe">
+<form id="orderForm"
+action="https://formsubmit.co/aadityadas4000@gmail.com"
+method="POST"
+enctype="multipart/form-data">
+
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_subject" value="🔥 New Free Fire Order">
 <input type="hidden" name="Package" id="pkg">
@@ -118,11 +203,11 @@ h1,h2,h3,h4,h5,h6{font-family:'Orbitron',sans-serif;font-weight:900;}
 </div>
 </div>
 
-<!-- HIDDEN IFRAME -->
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+<!-- WhatsApp Support -->
+<a id="whatsappSupport" href="https://wa.me/9779703078638" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- ADMIN LOGIN -->
-<div class="modal fade" id="adminLoginModal">
+<!-- Admin Login -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered">
 <div class="modal-content p-3">
 <h5 class="text-center">🔐 Admin Login</h5>
@@ -133,76 +218,76 @@ h1,h2,h3,h4,h5,h6{font-family:'Orbitron',sans-serif;font-weight:900;}
 </div>
 </div>
 
-<!-- WHATSAPP SUPPORT -->
-<a href="https://wa.me/9779703078638" target="_blank" id="whatsappSupport"><i class="fab fa-whatsapp"></i></a>
-
-<!-- FLOATING DIAMONDS -->
-<div id="floatingDiamonds"></div>
-
-<!-- SCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-// ALL PACKAGES DATA
-const packages=[
-["₹100","115 💎"],["₹200","240 💎"],["₹295","355 💎"],["₹395","480 💎"],["₹530","610 💎"],
-["₹710","850 💎"],["₹810","965 💎"],["₹910","1,090 💎"],["₹1010","1,240 💎"],["₹1240","1,480 💎"],
-["₹1430","1,720 💎"],["₹1620","1,960 💎"],["₹1615","2,090 💎"],["₹2150","2,530 💎"],
-["₹4800","5,060 💎"],["₹6700","7,590 💎"],["₹8600","10,120 💎"],["₹16200","20,240 💎"]
-];
+// Floating diamonds
+const diamondContainer = document.getElementById("diamondContainer");
+for(let i=0;i<40;i++){
+    const d=document.createElement("div");
+    d.classList.add("diamond");
+    d.style.left=Math.random()*100+"%";
+    d.style.top=Math.random()*100+"%";
+    d.style.fontSize=(10+Math.random()*20)+"px";
+    d.style.animationDuration=(5+Math.random()*5)+"s";
+    d.innerHTML="💎";
+    diamondContainer.appendChild(d);
+}
 
-// RENDER PACKAGE CARDS
-const pkgContainer=document.getElementById("packageList");
-packages.forEach(p=>{
-  pkgContainer.innerHTML+=`
-  <div class="col-6 col-md-3">
-    <div class="card p-3" onclick="buy('${p[1]}','${p[0]}')">
-      <b>${p[1]}</b>
-      <p>${p[0]}</p>
-    </div>
-  </div>`;
-});
+// Packages
+const diamonds=[["115 Diamonds","₹100"],["240 Diamonds","₹200"],["355 Diamonds","₹295"],["480 Diamonds","₹395"],["610 Diamonds","₹530"],["850 Diamonds","₹710"],["965 Diamonds","₹810"],["1090 Diamonds","₹910"],["1240 Diamonds","₹1010"],["1480 Diamonds","₹1240"],["1720 Diamonds","₹1430"],["1960 Diamonds","₹1620"],["2090 Diamonds","₹1615"],["2530 Diamonds","₹2150"],["5060 Diamonds","₹4800"],["7590 Diamonds","₹6700"],["10120 Diamonds","₹8600"],["20240 Diamonds","₹16200"]];
+const membership=[["Weekly","₹200"],["Monthly","₹1090"],["Weekly Lite","₹75"],["Level Up","₹790"]];
+const levelup=[["Level 6","₹85"],["Level 10","₹140"],["Level 15","₹140"],["Level 20","₹140"],["Level 25","₹140"],["Level 30","₹200"]];
 
-// MODAL
-const modal=new bootstrap.Modal(document.getElementById("payModal"));
+function createCards(list,target){
+    document.getElementById(target).innerHTML="";
+    list.forEach(i=>{
+        document.getElementById(target).innerHTML+=
+        `<div class="col-6 col-md-3">
+        <div class="card p-2 text-center">
+        <b>${i[0]}</b>
+        <p>${i[1]}</p>
+        <button class="btn btn-buy w-100" onclick="buy('${i[0]}','${i[1]}')">BUY</button>
+        </div></div>`;
+    });
+}
+
+createCards(diamonds,"diamondList");
+createCards(membership,"memberList");
+createCards(levelup,"levelList");
+
+// Modal
+const modal = new bootstrap.Modal(document.getElementById("payModal"));
 function buy(pkg,amt){
-  document.getElementById("pkg").value=pkg;
-  document.getElementById("amt").value=amt;
-  document.getElementById("thanks").style.display="none";
-  modal.show();
+    document.getElementById("pkg").value=pkg;
+    document.getElementById("amt").value=amt;
+    document.getElementById("thanks").style.display="none";
+    modal.show();
 }
 
-// AFTER SUBMIT
-document.getElementById("orderForm").addEventListener("submit",()=>{
-  setTimeout(()=>{
-    document.getElementById("thanks").style.display="block";
-    document.getElementById("orderForm").reset();
-  },500);
+// After submit
+document.getElementById("orderForm").addEventListener("submit",(e)=>{
+    setTimeout(()=>{
+        document.getElementById("thanks").style.display="block";
+        document.getElementById("orderForm").reset();
+    },800);
 });
 
-// ADMIN LOGIN
+// Admin
 function openAdminLogin(){
-  new bootstrap.Modal(document.getElementById("adminLoginModal")).show();
-}
-function adminLogin(){
-  const password=document.getElementById("adminPass").value;
-  if(password==="Aaditya@123"){
-    alert("✅ Admin Logged In! Open Gmail to see orders.");
-    window.open("https://mail.google.com","_blank");
-  } else{
-    document.getElementById("adminError").innerText="Wrong password ❌";
-  }
+    var adminModal=new bootstrap.Modal(document.getElementById("adminLoginModal"));
+    adminModal.show();
 }
 
-// FLOATING DIAMONDS
-function createFloatingDiamond(){
-  const diamond=document.createElement("div");
-  diamond.classList.add("floating-diamond");
-  diamond.style.left=Math.random()*window.innerWidth+"px";
-  diamond.innerHTML="💎";
-  document.getElementById("floatingDiamonds").appendChild(diamond);
-  setTimeout(()=>diamond.remove(),10000);
+function adminLogin(){
+    const password=document.getElementById("adminPass").value;
+    if(password==="Aaditya@123"){
+        alert("✅ Admin Logged In! Open Gmail to see orders.");
+        window.open("https://mail.google.com","_blank");
+    }else{
+        document.getElementById("adminError").innerText="Wrong password ❌";
+    }
 }
-setInterval(createFloatingDiamond,500);
 </script>
 
 </body>

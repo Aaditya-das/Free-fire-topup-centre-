@@ -2,202 +2,234 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Fire Top Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Poppins,sans-serif;
-  background:#6b78f0;
-  color:#333;
+  background:#6d78e6;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x:hidden;
 }
 
-/* NAVBAR */
-nav{
-  background:#fff;
-  padding:12px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+/* Floating Diamonds */
+.diamond-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
 }
-nav b{color:#ff6a00}
+.diamond-bg span{
+  position:absolute;
+  font-size:42px;
+  opacity:.15;
+  animation:float 22s linear infinite;
+}
+.diamond-bg span:nth-child(1){left:10%;animation-duration:18s}
+.diamond-bg span:nth-child(2){left:30%;font-size:55px;animation-duration:24s}
+.diamond-bg span:nth-child(3){left:50%;animation-duration:28s}
+.diamond-bg span:nth-child(4){left:70%;font-size:48px;animation-duration:20s}
+.diamond-bg span:nth-child(5){left:90%;animation-duration:30s}
 
-/* HERO */
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0)}
+  100%{transform:translateY(-10vh) rotate(360deg)}
+}
+
+/* Hero */
 .hero{
-  background:linear-gradient(135deg,#7b85ff,#6b78f0);
-  color:#fff;
+  background:#7a84ea;
+  border-radius:20px;
   padding:30px;
-  margin:15px;
-  border-radius:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  color:#fff;
+  position:relative;
+  z-index:2;
 }
-.hero h1{margin:0}
-.hero p{opacity:.9}
-.hero img{width:120px}
+.hero img{
+  max-width:160px;
+}
 
-/* FORM */
-.form-box{
+/* Section */
+.section{
   background:#fff;
-  margin:15px;
-  border-radius:16px;
-  padding:20px;
-}
-.form-box h2{
-  text-align:center;
-  color:#6b78f0;
-}
-input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:14px;
+  border-radius:20px;
+  padding:25px;
+  margin-top:20px;
+  position:relative;
+  z-index:2;
 }
 
-/* PACKAGES */
-.packages{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:15px;
-}
-.pkg{
-  border:2px solid #e0e0ff;
-  border-radius:12px;
+/* Packages */
+.package{
+  border:2px solid #e0e0e0;
+  border-radius:15px;
+  padding:15px;
   text-align:center;
-  padding:12px 6px;
   cursor:pointer;
   transition:.3s;
 }
-.pkg.active{
-  border-color:#6b78f0;
+.package:hover{
+  border-color:#6d78e6;
+  transform:scale(1.03);
+}
+.package.active{
+  border-color:#6d78e6;
   background:#eef0ff;
 }
-.pkg img{width:40px}
-.pkg b{display:block;margin-top:5px}
-.pkg span{color:#6b78f0;font-weight:600}
+.package h5{margin:10px 0 0}
+.price{color:#6d78e6;font-weight:bold}
 
-/* PAYMENT */
-.qr{
-  text-align:center;
-  margin-top:15px;
-}
-.qr img{
-  width:180px;
-  border-radius:12px;
-}
-
-/* BUTTON */
-button{
-  width:100%;
-  margin-top:15px;
-  padding:14px;
-  background:#ff6a00;
+/* Button */
+.btn-main{
+  background:#ff6a4d;
   border:none;
   color:#fff;
-  font-size:16px;
-  font-weight:600;
-  border-radius:10px;
-  cursor:pointer;
+  font-weight:bold;
+  border-radius:30px;
 }
 
-/* THANK YOU */
-#thanks{
-  display:none;
-  text-align:center;
-  color:green;
-  font-weight:600;
-  margin-top:10px;
+/* Modal */
+.modal-content{
+  border-radius:20px;
 }
 
-/* MOBILE */
-@media(max-width:480px){
-  .packages{grid-template-columns:repeat(2,1fr)}
+/* WhatsApp */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:50%;
+  font-size:22px;
+  z-index:99;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <b>🔥 Free Fire Top Up</b>
-  <span>Home | Top Up | Contact</span>
-</nav>
+<!-- Floating Diamonds -->
+<div class="diamond-bg">
+  <span>💎</span><span>💎</span><span>💎</span><span>💎</span><span>💎</span>
+</div>
 
-<div class="hero">
-  <div>
-    <h1>Get Free Fire Diamonds Instantly!</h1>
+<div class="container py-4">
+
+<!-- HERO -->
+<div class="hero row align-items-center">
+  <div class="col-7">
+    <h2><b>Get Free Fire<br>Diamonds Instantly!</b></h2>
     <p>Fast, Safe & Reliable Top Up Service</p>
   </div>
-  <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+  <div class="col-5 text-end">
+    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+  </div>
 </div>
 
-<div class="form-box">
-<h2>Top Up Your Account</h2>
+<!-- FORM -->
+<div class="section">
+<h4 class="text-center mb-3"><b>Top Up Your Account</b></h4>
 
-<form action="https://formsubmit.co/aadityadas4000@gmail.com" method="POST" enctype="multipart/form-data">
+<input class="form-control mb-2" id="uid" placeholder="Player ID">
+<input class="form-control mb-3" id="name" placeholder="Player Name (Optional)">
+
+<h6>Select Diamond Package</h6>
+
+<div class="row g-2" id="packages"></div>
+
+<button class="btn btn-main w-100 mt-4" onclick="openPay()">Continue</button>
+</div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal fade" id="payModal">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content p-3">
+
+<h5 class="text-center">Complete Payment</h5>
+
+<form id="orderForm"
+action="https://formsubmit.co/aadityadas4000@gmail.com"
+method="POST"
+enctype="multipart/form-data">
+
 <input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://yourgithubusername.github.io/">
+<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
 <input type="hidden" name="Package" id="pkg">
+<input type="hidden" name="Amount" id="amt">
 
-<input name="Free Fire UID" placeholder="Enter your Free Fire ID" required>
-<input name="Player Name" placeholder="Player Name (Optional)">
+<input type="hidden" name="Free Fire UID" id="fuid">
+<input type="hidden" name="Player Name" id="pname">
 
-<h3>Select Diamond Package</h3>
-
-<div class="packages">
-<div class="pkg" onclick="selectPkg(this,'115 Diamonds - Rs.100')">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<b>115</b><span>Rs.100</span>
+<div class="text-center">
+<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
 </div>
 
-<div class="pkg" onclick="selectPkg(this,'240 Diamonds - Rs.200')">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<b>240</b><span>Rs.200</span>
-</div>
+<input class="form-control mt-2" type="file" name="Payment Screenshot" required>
 
-<div class="pkg" onclick="selectPkg(this,'355 Diamonds - Rs.295')">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<b>355</b><span>Rs.295</span>
-</div>
-
-<div class="pkg" onclick="selectPkg(this,'480 Diamonds - Rs.395')">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<b>480</b><span>Rs.395</span>
-</div>
-
-<div class="pkg" onclick="selectPkg(this,'610 Diamonds - Rs.530')">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
-<b>610</b><span>Rs.530</span>
-</div>
-</div>
-
-<div class="qr">
-<p><b>Pay via eSewa</b></p>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg">
-</div>
-
-<input type="file" name="Payment Screenshot" required>
-
-<button>Confirm Order</button>
+<button class="btn btn-main w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
-<div id="thanks">✅ Thank you! Your order has been received.</div>
+<div id="thanks" class="text-center mt-3 text-success fw-bold" style="display:none">
+✅ Thank you! Order received.
 </div>
 
+</div>
+</div>
+</div>
+
+<!-- WhatsApp -->
+<a class="whatsapp" href="https://wa.me/9779703078638" target="_blank">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-function selectPkg(el,val){
-  document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('active'));
+const data=[
+["115 Diamonds","Rs.100"],["240 Diamonds","Rs.200"],
+["355 Diamonds","Rs.295"],["480 Diamonds","Rs.395"],
+["610 Diamonds","Rs.530"],["850 Diamonds","Rs.710"],
+["1060 Diamonds","Rs.890"],["2180 Diamonds","Rs.1790"],
+["5600 Diamonds","Rs.4490"]
+];
+
+let selected=null;
+
+const box=document.getElementById("packages");
+data.forEach(d=>{
+  box.innerHTML+=`
+  <div class="col-4">
+    <div class="package" onclick="selectPkg(this,'${d[0]}','${d[1]}')">
+      💎<h5>${d[0]}</h5>
+      <div class="price">${d[1]}</div>
+    </div>
+  </div>`;
+});
+
+function selectPkg(el,p,a){
+  document.querySelectorAll('.package').forEach(x=>x.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('pkg').value=val;
+  selected={p,a};
 }
+
+function openPay(){
+  if(!selected) return alert("Select package");
+  document.getElementById("pkg").value=selected.p;
+  document.getElementById("amt").value=selected.a;
+  document.getElementById("fuid").value=document.getElementById("uid").value;
+  document.getElementById("pname").value=document.getElementById("name").value;
+  new bootstrap.Modal(document.getElementById("payModal")).show();
+}
+
+document.getElementById("orderForm").addEventListener("submit",()=>{
+  setTimeout(()=>{
+    document.getElementById("thanks").style.display="block";
+    document.getElementById("orderForm").reset();
+  },800);
+});
 </script>
 
 </body>

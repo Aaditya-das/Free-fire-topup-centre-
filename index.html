@@ -3,107 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaditya Top Up Centre</title>
+<title>Free Fire Top Up</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 body{
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:#fff;
-  font-family: 'Segoe UI', sans-serif;
+  background:#6f7ee8;
+  font-family: "Segoe UI", sans-serif;
 }
-h3{
+.navbar{
+  background:#fff;
+}
+.hero{
+  background:#7c88ee;
+  border-radius:18px;
+  padding:30px;
+  color:#fff;
+}
+.hero h1{
   font-weight:800;
 }
-.card{
-  background:rgba(255,255,255,0.08);
-  border-radius:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
+.hero img{
+  width:110px;
+}
+.section{
+  background:#fff;
+  border-radius:18px;
+  padding:25px;
+  margin-top:20px;
+}
+.pkg{
+  border:2px solid #e5e8ff;
+  border-radius:14px;
+  padding:15px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+.pkg.active{
+  border-color:#6f7ee8;
+  background:#eef0ff;
+}
+.pkg img{
+  width:45px;
+}
+.pkg b{
+  display:block;
+  margin-top:8px;
 }
 .price{
-  color:#ffd166;
+  color:#6f7ee8;
   font-weight:700;
 }
-.btn-buy{
-  background:#ff4655;
-  border:none;
-  font-weight:bold;
-  border-radius:30px;
-}
-.btn-buy:hover{
-  background:#ff1f3a;
-}
-.nav-tabs .nav-link{
-  color:#ccc;
-  border:none;
-}
-.nav-tabs .nav-link.active{
-  background:#ff4655;
+.btn-main{
+  background:#ff6b6b;
   color:#fff;
-  border-radius:20px;
+  border:none;
+  border-radius:30px;
+  padding:12px;
+  font-weight:700;
 }
 .qr-box{
   background:#fff;
-  padding:12px;
+  padding:15px;
   border-radius:14px;
   text-align:center;
 }
 #thanks{
   display:none;
   text-align:center;
-  color:#00ff99;
-  font-weight:bold;
+  color:#00c896;
+  font-weight:700;
 }
 .wa-btn{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
-  color:white;
-  padding:12px 18px;
+  color:#fff;
+  padding:14px 20px;
   border-radius:50px;
-  font-weight:bold;
+  font-weight:700;
   text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,.4);
-  z-index:9999;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container mt-4">
-<h3 class="text-center mb-3">🔥 Aaditya Top Up Centre 🔥</h3>
+<nav class="navbar px-3">
+  <b>🔥 Free Fire Top Up</b>
+</nav>
 
-<ul class="nav nav-tabs justify-content-center">
-<li class="nav-item">
-<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#diamonds">💎 Diamonds</button>
-</li>
-<li class="nav-item">
-<button class="nav-link" data-bs-toggle="tab" data-bs-target="#membership">🎟 Membership</button>
-</li>
-</ul>
+<div class="container mt-3">
 
-<div class="tab-content mt-3">
-
-<div class="tab-pane fade show active" id="diamonds">
-<div class="row g-3" id="diamondList"></div>
+<!-- HERO -->
+<div class="hero d-flex align-items-center justify-content-between">
+  <div>
+    <h1>Get Free Fire<br>Diamonds Instantly!</h1>
+    <p>Fast, Safe & Reliable Top Up Service</p>
+  </div>
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616554.png">
 </div>
 
-<div class="tab-pane fade" id="membership">
-<div class="row g-3" id="memberList"></div>
-</div>
-
-</div>
-</div>
-
-<!-- PAYMENT MODAL -->
-<div class="modal fade" id="payModal">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content bg-dark p-3 rounded-4">
-
-<h5 class="text-center">💳 Complete Payment</h5>
+<!-- FORM -->
+<div class="section">
+<h4 class="text-center mb-3">Top Up Your Account</h4>
 
 <form id="orderForm"
 action="https://formsubmit.co/aadityadas4000@gmail.com"
@@ -115,78 +121,69 @@ enctype="multipart/form-data">
 <input type="hidden" name="Package" id="pkg">
 <input type="hidden" name="Amount" id="amt">
 
-<input class="form-control mt-2" name="Free Fire UID" placeholder="Free Fire UID" required>
-<input class="form-control mt-2" name="Player Name" placeholder="Player Name" required>
+<label class="fw-bold">Player ID</label>
+<input class="form-control mb-2" name="Free Fire UID" required>
 
-<div class="qr-box mt-3">
+<label class="fw-bold">Player Name (Optional)</label>
+<input class="form-control mb-3" name="Player Name">
+
+<b>Select Diamond Package</b>
+
+<div class="row g-2 mt-2" id="packages"></div>
+
+<div class="qr-box mt-4">
 <b>Pay via eSewa</b><br>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
+<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="180">
 </div>
 
-<input class="form-control mt-2" type="file" name="Payment Screenshot" required>
+<input type="file" name="Payment Screenshot" class="form-control mt-3" required>
 
-<button class="btn btn-buy w-100 mt-3">CONFIRM ORDER</button>
+<button class="btn btn-main w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
-<div id="thanks">
-✅ Thank you! Order received.<br>
-Website ready for new order.
-</div>
-
-</div>
+<div id="thanks">✅ Thank you! Order received.<br>Ready for new order.</div>
 </div>
 </div>
 
-<!-- WhatsApp Support -->
-<a href="https://wa.me/9779703078638" target="_blank" class="wa-btn">💬 Support</a>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<a href="https://wa.me/9779703078638" class="wa-btn">💬 Support</a>
 
 <script>
-const modal=new bootstrap.Modal(document.getElementById("payModal"));
-
-const diamonds=[
+const pkgs=[
 ["115 Diamonds","Rs 100"],
 ["240 Diamonds","Rs 200"],
 ["355 Diamonds","Rs 295"],
 ["480 Diamonds","Rs 395"],
 ["610 Diamonds","Rs 530"],
-["850 Diamonds","Rs 710"]
+["850 Diamonds","Rs 710"],
+["1060 Diamonds","Rs 890"],
+["2180 Diamonds","Rs 1790"]
 ];
 
-const membership=[
-["Weekly Membership","Rs 200"],
-["Monthly Membership","Rs 1090"]
-];
+const box=document.getElementById("packages");
 
-function createCards(list,target){
-  list.forEach(i=>{
-    document.getElementById(target).innerHTML+=`
-    <div class="col-6">
-      <div class="card p-3 text-center">
-        <b>${i[0]}</b>
-        <div class="price mt-1">${i[1]}</div>
-        <button class="btn btn-buy mt-2"
-        onclick="buy('${i[0]}','${i[1]}')">BUY</button>
-      </div>
-    </div>`;
-  });
-}
+pkgs.forEach(p=>{
+  box.innerHTML+=`
+  <div class="col-4">
+    <div class="pkg" onclick="selectPkg(this,'${p[0]}','${p[1]}')">
+      💎
+      <b>${p[0]}</b>
+      <div class="price">${p[1]}</div>
+    </div>
+  </div>`;
+});
 
-createCards(diamonds,"diamondList");
-createCards(membership,"memberList");
-
-function buy(p,a){
+function selectPkg(el,p,a){
+  document.querySelectorAll(".pkg").forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
   document.getElementById("pkg").value=p;
   document.getElementById("amt").value=a;
-  document.getElementById("thanks").style.display="none";
-  modal.show();
 }
 
 document.getElementById("orderForm").addEventListener("submit",()=>{
   setTimeout(()=>{
     document.getElementById("thanks").style.display="block";
     document.getElementById("orderForm").reset();
+    document.querySelectorAll(".pkg").forEach(x=>x.classList.remove("active"));
   },800);
 });
 </script>

@@ -3,189 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Fire Top Up</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Free Fire Diamond Top Up</title>
 
 <style>
 body{
-  background:#6f7ee8;
-  font-family: "Segoe UI", sans-serif;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6ff;
 }
-.navbar{
+
+header{
   background:#fff;
+  padding:12px 20px;
+  font-weight:bold;
+  color:#ff4655;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
+
 .hero{
-  background:#7c88ee;
-  border-radius:18px;
+  margin:15px;
   padding:30px;
-  color:#fff;
+  border-radius:20px;
+  background:linear-gradient(135deg,#6a7cff,#7f8cff);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
 }
+
 .hero h1{
-  font-weight:800;
+  font-size:26px;
 }
-.hero img{
-  width:110px;
+
+.hero p{
+  opacity:.9;
 }
-.section{
-  background:#fff;
-  border-radius:18px;
-  padding:25px;
-  margin-top:20px;
-}
-.pkg{
-  border:2px solid #e5e8ff;
-  border-radius:14px;
-  padding:15px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s;
-}
-.pkg.active{
-  border-color:#6f7ee8;
-  background:#eef0ff;
-}
-.pkg img{
-  width:45px;
-}
-.pkg b{
-  display:block;
-  margin-top:8px;
-}
-.price{
-  color:#6f7ee8;
-  font-weight:700;
-}
-.btn-main{
-  background:#ff6b6b;
-  color:#fff;
-  border:none;
+
+.hero-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 22px;
+  background:#ff4655;
+  color:white;
   border-radius:30px;
-  padding:12px;
-  font-weight:700;
+  text-decoration:none;
+  font-weight:600;
 }
-.qr-box{
-  background:#fff;
+
+.hero-diamond{
+  font-size:90px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
+}
+
+.container{
+  background:white;
+  margin:15px;
+  padding:20px;
+  border-radius:18px;
+}
+
+h2{
+  text-align:center;
+  color:#4c4cff;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.packages{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+}
+
+.card{
+  background:linear-gradient(180deg,#ffffff,#eef2ff);
+  border-radius:18px;
   padding:15px;
-  border-radius:14px;
   text-align:center;
+  box-shadow:0 6px 15px rgba(0,0,0,.15);
 }
-#thanks{
-  display:none;
-  text-align:center;
-  color:#00c896;
+
+.card b{
+  display:block;
+  font-size:16px;
+}
+
+.card p{
   font-weight:700;
+  color:#5b6cff;
 }
-.wa-btn{
+
+.btn-buy{
+  background:#ff4655;
+  border:none;
+  color:white;
+  padding:8px 14px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  width:90%;
+  max-width:320px;
+  text-align:center;
+}
+
+.modal img{
+  width:100%;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.warning{
+  color:red;
+  font-size:13px;
+}
+
+.whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
-  color:#fff;
-  padding:14px 20px;
+  color:white;
+  padding:12px 16px;
   border-radius:50px;
-  font-weight:700;
   text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
 }
 </style>
 </head>
 
 <body>
 
-<nav class="navbar px-3">
-  <b>🔥 Free Fire Top Up</b>
-</nav>
+<header>🔥 Free Fire Top Up</header>
 
-<div class="container mt-3">
-
-<!-- HERO -->
-<div class="hero d-flex align-items-center justify-content-between">
+<section class="hero">
   <div>
-    <h1>Get Free Fire<br>Diamonds Instantly!</h1>
-    <p>Fast, Safe & Reliable Top Up Service</p>
+    <h1>Get Free Fire Diamonds Instantly 💎</h1>
+    <p>Fast • Safe • Reliable Top Up Service</p>
+    <a href="#topup" class="hero-btn">Top Up Now</a>
   </div>
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616554.png">
+  <div class="hero-diamond">💎</div>
+</section>
+
+<div class="container" id="topup">
+<h2>Top Up Your Account</h2>
+
+<input id="playerId" placeholder="Enter Player ID">
+<input id="playerName" placeholder="Player Name (Optional)">
+
+<div class="packages" id="packages"></div>
 </div>
 
-<!-- FORM -->
-<div class="section">
-<h4 class="text-center mb-3">Top Up Your Account</h4>
-
-<form id="orderForm"
-action="https://formsubmit.co/aadityadas4000@gmail.com"
-method="POST"
-enctype="multipart/form-data">
-
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
-<input type="hidden" name="Package" id="pkg">
-<input type="hidden" name="Amount" id="amt">
-
-<label class="fw-bold">Player ID</label>
-<input class="form-control mb-2" name="Free Fire UID" required>
-
-<label class="fw-bold">Player Name (Optional)</label>
-<input class="form-control mb-3" name="Player Name">
-
-<b>Select Diamond Package</b>
-
-<div class="row g-2 mt-2" id="packages"></div>
-
-<div class="qr-box mt-4">
-<b>Pay via eSewa</b><br>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="180">
+<!-- PAYMENT MODAL -->
+<div class="modal" id="payModal">
+  <div class="modal-box">
+    <h3 id="pkgTitle"></h3>
+    <p id="pkgPrice"></p>
+    <img src="esewa-qr.jpg" alt="eSewa QR">
+    <p class="warning">⚠ Send exact amount only. Fake payment = Order cancelled.</p>
+    <button class="btn-buy" onclick="confirmPay()">Confirm Payment</button>
+  </div>
 </div>
 
-<input type="file" name="Payment Screenshot" class="form-control mt-3" required>
-
-<button class="btn btn-main w-100 mt-3">CONFIRM ORDER</button>
-</form>
-
-<div id="thanks">✅ Thank you! Order received.<br>Ready for new order.</div>
-</div>
-</div>
-
-<a href="https://wa.me/9779703078638" class="wa-btn">💬 Support</a>
+<!-- WHATSAPP -->
+<a class="whatsapp" target="_blank"
+href="https://wa.me/9779703078638">
+WhatsApp Support
+</a>
 
 <script>
-const pkgs=[
-["115 Diamonds","Rs 100"],
-["240 Diamonds","Rs 200"],
-["355 Diamonds","Rs 295"],
-["480 Diamonds","Rs 395"],
-["610 Diamonds","Rs 530"],
-["850 Diamonds","Rs 710"],
-["1060 Diamonds","Rs 890"],
-["2180 Diamonds","Rs 1790"]
+const diamonds=[
+["115 Diamonds","Rs.100"],
+["240 Diamonds","Rs.200"],
+["355 Diamonds","Rs.295"],
+["480 Diamonds","Rs.395"],
+["610 Diamonds","Rs.530"],
+["850 Diamonds","Rs.710"],
+["965 Diamonds","Rs.810"],
+["1090 Diamonds","Rs.910"],
+["1240 Diamonds","Rs.1010"],
+["1480 Diamonds","Rs.1240"],
+["1720 Diamonds","Rs.1430"],
+["1960 Diamonds","Rs.1620"],
+["2090 Diamonds","Rs.1615"],
+["2530 Diamonds","Rs.2150"],
+["5060 Diamonds","Rs.4800"],
+["7590 Diamonds","Rs.6700"],
+["10120 Diamonds","Rs.8600"],
+["20240 Diamonds","Rs.16200"]
 ];
 
 const box=document.getElementById("packages");
 
-pkgs.forEach(p=>{
+diamonds.forEach(d=>{
   box.innerHTML+=`
-  <div class="col-4">
-    <div class="pkg" onclick="selectPkg(this,'${p[0]}','${p[1]}')">
-      💎
-      <b>${p[0]}</b>
-      <div class="price">${p[1]}</div>
-    </div>
+  <div class="card">
+    <b>💎 ${d[0]}</b>
+    <p>${d[1]}</p>
+    <button class="btn-buy" onclick="buy('${d[0]}','${d[1]}')">Buy</button>
   </div>`;
 });
 
-function selectPkg(el,p,a){
-  document.querySelectorAll(".pkg").forEach(x=>x.classList.remove("active"));
-  el.classList.add("active");
-  document.getElementById("pkg").value=p;
-  document.getElementById("amt").value=a;
+function buy(pkg,price){
+  document.getElementById("pkgTitle").innerText=pkg;
+  document.getElementById("pkgPrice").innerText=price;
+  document.getElementById("payModal").style.display="flex";
 }
 
-document.getElementById("orderForm").addEventListener("submit",()=>{
-  setTimeout(()=>{
-    document.getElementById("thanks").style.display="block";
-    document.getElementById("orderForm").reset();
-    document.querySelectorAll(".pkg").forEach(x=>x.classList.remove("active"));
-  },800);
-});
+function confirmPay(){
+  alert("✅ Thank you! Payment received.\nYour diamonds will be added shortly.");
+  document.getElementById("payModal").style.display="none";
+  window.location.href="#topup";
+}
 </script>
 
 </body>

@@ -18,20 +18,20 @@ body{
 /* ===== FLOATING BACKGROUND DIAMONDS ===== */
 .bg-diamonds span{
   position:fixed;
-  font-size:26px;
-  opacity:0.15;
-  animation:floatBG 20s linear infinite;
+  font-size:24px;
+  opacity:0.12;
+  animation:floatBG linear infinite;
   z-index:-1;
 }
-.bg-diamonds span:nth-child(1){left:10%;animation-duration:18s}
-.bg-diamonds span:nth-child(2){left:30%;animation-duration:24s}
-.bg-diamonds span:nth-child(3){left:50%;animation-duration:22s}
-.bg-diamonds span:nth-child(4){left:70%;animation-duration:26s}
-.bg-diamonds span:nth-child(5){left:90%;animation-duration:20s}
+.bg-diamonds span:nth-child(1){left:8%;animation-duration:22s}
+.bg-diamonds span:nth-child(2){left:28%;animation-duration:26s}
+.bg-diamonds span:nth-child(3){left:50%;animation-duration:20s}
+.bg-diamonds span:nth-child(4){left:72%;animation-duration:28s}
+.bg-diamonds span:nth-child(5){left:92%;animation-duration:24s}
 
 @keyframes floatBG{
-  0%{transform:translateY(100vh)}
-  100%{transform:translateY(-10vh)}
+  0%{transform:translateY(110vh)}
+  100%{transform:translateY(-15vh)}
 }
 
 /* ===== 3D BIG DIAMOND ===== */
@@ -40,16 +40,16 @@ body{
   height:140px;
   margin:auto;
   transform-style:preserve-3d;
-  animation:rotate3d 6s linear infinite, float3d 3s ease-in-out infinite;
+  animation:rotate3d 7s linear infinite, float3d 3.5s ease-in-out infinite;
 }
 .face{
   position:absolute;
   width:140px;
   height:140px;
-  background:linear-gradient(135deg,#fff,#9bb0ff,#4a5cff);
+  background:linear-gradient(135deg,#ffffff,#9fb4ff,#4b63ff);
   opacity:.9;
-  border:1px solid rgba(255,255,255,.4);
-  box-shadow:0 0 35px rgba(120,150,255,.8);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 0 40px rgba(130,160,255,.85);
 }
 .front{transform:rotateY(0deg) translateZ(70px)}
 .back{transform:rotateY(180deg) translateZ(70px)}
@@ -64,38 +64,57 @@ body{
 }
 @keyframes float3d{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-18px)}
+  50%{transform:translateY(-16px)}
 }
 
-/* ===== CARDS ===== */
+/* ===== PACKAGE CARDS ===== */
 .card{
   background:#121b2f;
   border:none;
-  border-radius:14px;
+  border-radius:16px;
+  transition:.25s;
 }
 .card:hover{
-  transform:scale(1.04);
+  transform:translateY(-4px) scale(1.03);
 }
+.card b{
+  font-size:1.05rem;
+}
+.card p{
+  margin:4px 0 10px;
+  color:#cdd7ff;
+}
+
 .btn-buy{
   background:linear-gradient(45deg,#4a5cff,#8ea2ff);
   border:none;
   color:#fff;
-  font-weight:bold;
+  font-weight:600;
 }
 
 /* ===== MODAL ===== */
+.modal-content{
+  border-radius:16px;
+}
 .qr-box{
   background:#fff;
-  padding:10px;
-  border-radius:10px;
+  padding:12px;
+  border-radius:12px;
   text-align:center;
+}
+.qr-box img{
+  max-width:200px;
 }
 #thanks{
   display:none;
   color:#8effa0;
-  font-weight:bold;
+  font-weight:600;
   text-align:center;
-  margin-top:10px;
+  margin-top:12px;
+}
+.small-note{
+  font-size:.85rem;
+  opacity:.75;
 }
 </style>
 </head>
@@ -109,7 +128,8 @@ body{
 
 <div class="container text-center mt-4">
 
-<h3>🔥 Aaditya Top Up Centre 🔥</h3>
+<h4 class="fw-bold">🔥 Aaditya Top Up Centre 🔥</h4>
+<p class="small-note mb-3">Instant Free Fire Diamond Top-Up</p>
 
 <!-- BIG 3D DIAMOND -->
 <div class="diamond-3d my-4">
@@ -121,6 +141,8 @@ body{
   <div class="face bottom"></div>
 </div>
 
+<h6 class="mb-3">💎 Select Diamond Package</h6>
+
 <div class="row g-3" id="packages"></div>
 
 </div>
@@ -130,7 +152,8 @@ body{
 <div class="modal-dialog modal-dialog-centered">
 <div class="modal-content bg-dark p-3">
 
-<h5 class="text-center">Complete Payment</h5>
+<h6 class="text-center mb-2">Complete Your Payment</h6>
+<p class="small-note text-center">Enter correct UID & upload payment screenshot</p>
 
 <form id="orderForm"
 action="https://formsubmit.co/aadityadas4000@gmail.com"
@@ -148,7 +171,7 @@ target="hiddenFrame">
 
 <div class="qr-box mt-3">
 <b>Pay via eSewa</b><br>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
+<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg">
 </div>
 
 <input class="form-control mt-2" type="file" name="Payment Screenshot" required>
@@ -177,12 +200,14 @@ const data=[
 
 data.forEach(p=>{
 document.getElementById("packages").innerHTML+=`
-<div class="col-6">
-<div class="card p-2">
-<b>${p[0]}</b>
-<p>${p[1]}</p>
-<button class="btn btn-buy w-100" onclick="buy('${p[0]}','${p[1]}')">Select</button>
-</div>
+<div class="col-6 col-md-4">
+  <div class="card p-3">
+    <b>${p[0]}</b>
+    <p>${p[1]}</p>
+    <button class="btn btn-buy w-100" onclick="buy('${p[0]}','${p[1]}')">
+      Select
+    </button>
+  </div>
 </div>`;
 });
 
@@ -197,7 +222,7 @@ document.getElementById("orderForm").addEventListener("submit",()=>{
 setTimeout(()=>{
 document.getElementById("thanks").style.display="block";
 document.getElementById("orderForm").reset();
-},700);
+},800);
 });
 </script>
 

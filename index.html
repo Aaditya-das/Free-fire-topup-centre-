@@ -10,78 +10,88 @@
 <style>
 body{
   background:#6d78e6;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   overflow-x:hidden;
 }
 
-/* Floating Diamonds */
-.diamond-bg{
+/* Floating background diamonds */
+.bg-diamond span{
   position:fixed;
-  inset:0;
-  z-index:0;
-  overflow:hidden;
-}
-.diamond-bg span{
-  position:absolute;
-  font-size:42px;
+  font-size:40px;
   opacity:.15;
-  animation:float 22s linear infinite;
+  animation:float 25s linear infinite;
 }
-.diamond-bg span:nth-child(1){left:10%;animation-duration:18s}
-.diamond-bg span:nth-child(2){left:30%;font-size:55px;animation-duration:24s}
-.diamond-bg span:nth-child(3){left:50%;animation-duration:28s}
-.diamond-bg span:nth-child(4){left:70%;font-size:48px;animation-duration:20s}
-.diamond-bg span:nth-child(5){left:90%;animation-duration:30s}
+.bg-diamond span:nth-child(1){left:10%}
+.bg-diamond span:nth-child(2){left:30%;font-size:55px;animation-duration:30s}
+.bg-diamond span:nth-child(3){left:50%;animation-duration:22s}
+.bg-diamond span:nth-child(4){left:70%;font-size:48px;animation-duration:27s}
+.bg-diamond span:nth-child(5){left:90%;animation-duration:35s}
 
 @keyframes float{
-  0%{transform:translateY(100vh) rotate(0)}
-  100%{transform:translateY(-10vh) rotate(360deg)}
+  0%{transform:translateY(110vh)}
+  100%{transform:translateY(-10vh)}
 }
 
-/* Hero */
+/* HERO */
 .hero{
   background:#7a84ea;
-  border-radius:20px;
+  border-radius:22px;
   padding:30px;
   color:#fff;
   position:relative;
   z-index:2;
 }
-.hero img{
-  max-width:160px;
+
+/* BIG DIAMOND */
+.big-diamond{
+  width:200px;
+  animation:diamondFloat 4s ease-in-out infinite,
+             glow 2.5s ease-in-out infinite alternate;
 }
 
-/* Section */
+@keyframes diamondFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+
+@keyframes glow{
+  from{filter:drop-shadow(0 0 10px #aab4ff)}
+  to{filter:drop-shadow(0 0 30px #ffffff)}
+}
+
+/* FORM SECTION */
 .section{
   background:#fff;
-  border-radius:20px;
+  border-radius:22px;
   padding:25px;
   margin-top:20px;
-  position:relative;
   z-index:2;
+  position:relative;
 }
 
-/* Packages */
+/* PACKAGES */
 .package{
-  border:2px solid #e0e0e0;
+  border:2px solid #e2e2e2;
   border-radius:15px;
-  padding:15px;
+  padding:14px;
   text-align:center;
   cursor:pointer;
   transition:.3s;
 }
 .package:hover{
+  transform:scale(1.05);
   border-color:#6d78e6;
-  transform:scale(1.03);
 }
 .package.active{
-  border-color:#6d78e6;
   background:#eef0ff;
+  border-color:#6d78e6;
 }
-.package h5{margin:10px 0 0}
-.price{color:#6d78e6;font-weight:bold}
+.price{
+  color:#6d78e6;
+  font-weight:bold;
+}
 
-/* Button */
+/* BUTTON */
 .btn-main{
   background:#ff6a4d;
   border:none;
@@ -90,12 +100,10 @@ body{
   border-radius:30px;
 }
 
-/* Modal */
-.modal-content{
-  border-radius:20px;
-}
+/* MODAL */
+.modal-content{border-radius:22px}
 
-/* WhatsApp */
+/* WHATSAPP */
 .whatsapp{
   position:fixed;
   bottom:20px;
@@ -112,8 +120,8 @@ body{
 
 <body>
 
-<!-- Floating Diamonds -->
-<div class="diamond-bg">
+<!-- Background diamonds -->
+<div class="bg-diamond">
   <span>💎</span><span>💎</span><span>💎</span><span>💎</span><span>💎</span>
 </div>
 
@@ -126,7 +134,8 @@ body{
     <p>Fast, Safe & Reliable Top Up Service</p>
   </div>
   <div class="col-5 text-end">
-    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+    <img class="big-diamond"
+     src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
   </div>
 </div>
 
@@ -161,7 +170,6 @@ enctype="multipart/form-data">
 <input type="hidden" name="_subject" value="🔥 New Free Fire Order">
 <input type="hidden" name="Package" id="pkg">
 <input type="hidden" name="Amount" id="amt">
-
 <input type="hidden" name="Free Fire UID" id="fuid">
 <input type="hidden" name="Player Name" id="pname">
 
@@ -174,7 +182,7 @@ enctype="multipart/form-data">
 <button class="btn btn-main w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
-<div id="thanks" class="text-center mt-3 text-success fw-bold" style="display:none">
+<div id="thanks" class="text-center text-success fw-bold mt-3" style="display:none">
 ✅ Thank you! Order received.
 </div>
 
@@ -197,13 +205,13 @@ const data=[
 ];
 
 let selected=null;
-
 const box=document.getElementById("packages");
+
 data.forEach(d=>{
   box.innerHTML+=`
   <div class="col-4">
     <div class="package" onclick="selectPkg(this,'${d[0]}','${d[1]}')">
-      💎<h5>${d[0]}</h5>
+      💎<h6>${d[0]}</h6>
       <div class="price">${d[1]}</div>
     </div>
   </div>`;
@@ -216,18 +224,18 @@ function selectPkg(el,p,a){
 }
 
 function openPay(){
-  if(!selected) return alert("Select package");
-  document.getElementById("pkg").value=selected.p;
-  document.getElementById("amt").value=selected.a;
-  document.getElementById("fuid").value=document.getElementById("uid").value;
-  document.getElementById("pname").value=document.getElementById("name").value;
-  new bootstrap.Modal(document.getElementById("payModal")).show();
+  if(!selected) return alert("Select a package");
+  pkg.value=selected.p;
+  amt.value=selected.a;
+  fuid.value=uid.value;
+  pname.value=name.value;
+  new bootstrap.Modal(payModal).show();
 }
 
-document.getElementById("orderForm").addEventListener("submit",()=>{
+orderForm.addEventListener("submit",()=>{
   setTimeout(()=>{
-    document.getElementById("thanks").style.display="block";
-    document.getElementById("orderForm").reset();
+    thanks.style.display="block";
+    orderForm.reset();
   },800);
 });
 </script>

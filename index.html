@@ -9,151 +9,93 @@
 
 <style>
 body{
-  background:radial-gradient(circle at top,#121b3a,#060b1a);
+  background:linear-gradient(160deg,#0b0f2a,#121a45);
   color:#fff;
   font-family:system-ui;
-  overflow-x:hidden;
 }
 
-/* ===== FLOATING BACKGROUND DIAMONDS ===== */
-.bg-diamonds span{
-  position:fixed;
-  font-size:24px;
-  opacity:0.12;
-  animation:floatBG linear infinite;
-  z-index:-1;
+/* ===== BIG PREMIUM DIAMOND ===== */
+.diamond-wrap{
+  display:flex;
+  justify-content:center;
+  margin:25px 0;
 }
-.bg-diamonds span:nth-child(1){left:8%;animation-duration:22s}
-.bg-diamonds span:nth-child(2){left:28%;animation-duration:26s}
-.bg-diamonds span:nth-child(3){left:50%;animation-duration:20s}
-.bg-diamonds span:nth-child(4){left:72%;animation-duration:28s}
-.bg-diamonds span:nth-child(5){left:92%;animation-duration:24s}
-
-@keyframes floatBG{
-  0%{transform:translateY(110vh)}
-  100%{transform:translateY(-15vh)}
+.diamond{
+  width:120px;
+  height:120px;
+  background:linear-gradient(135deg,#e6ebff,#8ea2ff,#4a5cff);
+  transform:rotate(45deg);
+  animation:float 4s ease-in-out infinite;
+  box-shadow:0 0 40px rgba(120,150,255,.9);
+  border-radius:10px;
 }
-
-/* ===== 3D BIG DIAMOND ===== */
-.diamond-3d{
-  width:140px;
-  height:140px;
-  margin:auto;
-  transform-style:preserve-3d;
-  animation:rotate3d 7s linear infinite, float3d 3.5s ease-in-out infinite;
-}
-.face{
-  position:absolute;
-  width:140px;
-  height:140px;
-  background:linear-gradient(135deg,#ffffff,#9fb4ff,#4b63ff);
-  opacity:.9;
-  border:1px solid rgba(255,255,255,.35);
-  box-shadow:0 0 40px rgba(130,160,255,.85);
-}
-.front{transform:rotateY(0deg) translateZ(70px)}
-.back{transform:rotateY(180deg) translateZ(70px)}
-.left{transform:rotateY(-90deg) translateZ(70px)}
-.right{transform:rotateY(90deg) translateZ(70px)}
-.top{transform:rotateX(90deg) translateZ(70px)}
-.bottom{transform:rotateX(-90deg) translateZ(70px)}
-
-@keyframes rotate3d{
-  0%{transform:rotateX(0) rotateY(0)}
-  100%{transform:rotateX(360deg) rotateY(360deg)}
-}
-@keyframes float3d{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-16px)}
+@keyframes float{
+  0%,100%{transform:rotate(45deg) translateY(0)}
+  50%{transform:rotate(45deg) translateY(-18px)}
 }
 
-/* ===== PACKAGE CARDS ===== */
-.card{
-  background:#121b2f;
-  border:none;
-  border-radius:16px;
-  transition:.25s;
+/* ===== PACKAGE LIST ===== */
+.package{
+  background:#161f4a;
+  padding:14px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+  cursor:pointer;
+  transition:.2s;
 }
-.card:hover{
-  transform:translateY(-4px) scale(1.03);
+.package:hover{
+  background:#1f2a66;
+  transform:scale(1.02);
 }
-.card b{
-  font-size:1.05rem;
-}
-.card p{
-  margin:4px 0 10px;
-  color:#cdd7ff;
-}
-
-.btn-buy{
-  background:linear-gradient(45deg,#4a5cff,#8ea2ff);
-  border:none;
-  color:#fff;
-  font-weight:600;
+.price{
+  color:#8effff;
+  font-weight:bold;
 }
 
 /* ===== MODAL ===== */
 .modal-content{
+  background:#0e1435;
   border-radius:16px;
 }
-.qr-box{
+.qr{
   background:#fff;
-  padding:12px;
+  padding:10px;
   border-radius:12px;
   text-align:center;
 }
-.qr-box img{
-  max-width:200px;
-}
 #thanks{
   display:none;
-  color:#8effa0;
-  font-weight:600;
   text-align:center;
-  margin-top:12px;
-}
-.small-note{
-  font-size:.85rem;
-  opacity:.75;
+  color:#7CFF9A;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING BACKGROUND -->
-<div class="bg-diamonds">
-  <span>💎</span><span>💎</span><span>💎</span><span>💎</span><span>💎</span>
+<div class="container">
+
+<h4 class="text-center mt-3">💎 Aaditya Top Up Centre</h4>
+
+<div class="diamond-wrap">
+  <div class="diamond"></div>
 </div>
 
-<div class="container text-center mt-4">
-
-<h4 class="fw-bold">🔥 Aaditya Top Up Centre 🔥</h4>
-<p class="small-note mb-3">Instant Free Fire Diamond Top-Up</p>
-
-<!-- BIG 3D DIAMOND -->
-<div class="diamond-3d my-4">
-  <div class="face front"></div>
-  <div class="face back"></div>
-  <div class="face left"></div>
-  <div class="face right"></div>
-  <div class="face top"></div>
-  <div class="face bottom"></div>
-</div>
-
-<h6 class="mb-3">💎 Select Diamond Package</h6>
-
-<div class="row g-3" id="packages"></div>
+<!-- PACKAGE LIST -->
+<div id="list"></div>
 
 </div>
 
-<!-- PAYMENT MODAL -->
-<div class="modal fade" id="payModal">
+<!-- MODAL -->
+<div class="modal fade" id="orderModal">
 <div class="modal-dialog modal-dialog-centered">
-<div class="modal-content bg-dark p-3">
+<div class="modal-content p-3">
 
-<h6 class="text-center mb-2">Complete Your Payment</h6>
-<p class="small-note text-center">Enter correct UID & upload payment screenshot</p>
+<h5 class="text-center">Complete Your Order</h5>
 
 <form id="orderForm"
 action="https://formsubmit.co/aadityadas4000@gmail.com"
@@ -162,24 +104,24 @@ enctype="multipart/form-data"
 target="hiddenFrame">
 
 <input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_subject" value="🔥 New Free Fire Order">
+<input type="hidden" name="_subject" value="🔥 New Free Fire Diamond Order">
 <input type="hidden" name="Package" id="pkg">
-<input type="hidden" name="Amount" id="amt">
+<input type="hidden" name="Price" id="price">
 
 <input class="form-control mt-2" name="Free Fire UID" placeholder="Free Fire UID" required>
 <input class="form-control mt-2" name="Player Name" placeholder="Player Name" required>
 
-<div class="qr-box mt-3">
+<div class="qr mt-3">
 <b>Pay via eSewa</b><br>
-<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg">
+<img src="eSewa_My_QR_9703078638_17309575512566312293801309941981~2.jpg" width="200">
 </div>
 
 <input class="form-control mt-2" type="file" name="Payment Screenshot" required>
 
-<button class="btn btn-buy w-100 mt-3">CONFIRM ORDER</button>
+<button class="btn btn-primary w-100 mt-3">CONFIRM ORDER</button>
 </form>
 
-<div id="thanks">✅ Thank you! Order received.<br>Ready for new order.</div>
+<div id="thanks">✅ Thank you! Your order has been submitted.</div>
 
 </div>
 </div>
@@ -190,30 +132,31 @@ target="hiddenFrame">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const modal=new bootstrap.Modal(document.getElementById("payModal"));
+const modal=new bootstrap.Modal(document.getElementById("orderModal"));
 
-const data=[
-["115 Diamonds","Rs.100"],["240 Diamonds","Rs.200"],["355 Diamonds","Rs.295"],
-["480 Diamonds","Rs.395"],["610 Diamonds","Rs.530"],["850 Diamonds","Rs.710"],
-["965 Diamonds","Rs.810"],["1090 Diamonds","Rs.910"],["1240 Diamonds","Rs.1010"]
+const packages=[
+["115 Diamonds","Rs.100"],
+["240 Diamonds","Rs.200"],
+["355 Diamonds","Rs.295"],
+["480 Diamonds","Rs.395"],
+["610 Diamonds","Rs.530"],
+["850 Diamonds","Rs.710"],
+["965 Diamonds","Rs.810"],
+["1090 Diamonds","Rs.910"],
+["1240 Diamonds","Rs.1010"]
 ];
 
-data.forEach(p=>{
-document.getElementById("packages").innerHTML+=`
-<div class="col-6 col-md-4">
-  <div class="card p-3">
-    <b>${p[0]}</b>
-    <p>${p[1]}</p>
-    <button class="btn btn-buy w-100" onclick="buy('${p[0]}','${p[1]}')">
-      Select
-    </button>
-  </div>
+packages.forEach(p=>{
+document.getElementById("list").innerHTML+=`
+<div class="package" onclick="openOrder('${p[0]}','${p[1]}')">
+  <div><b>${p[0]}</b></div>
+  <div class="price">${p[1]}</div>
 </div>`;
 });
 
-function buy(pkg,amt){
+function openOrder(pkg,price){
 document.getElementById("pkg").value=pkg;
-document.getElementById("amt").value=amt;
+document.getElementById("price").value=price;
 document.getElementById("thanks").style.display="none";
 modal.show();
 }

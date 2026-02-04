@@ -6,164 +6,77 @@
 <title>Free Fire Top Up</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
-}
-body{
-  margin:0;
-  background:#6f7fe8;
-}
-nav{
-  background:#fff;
-  padding:12px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-nav .logo{
-  font-weight:700;
-  color:#ff4b4b;
-}
-nav a{
-  margin-left:15px;
-  text-decoration:none;
-  color:#555;
-  font-weight:500;
-}
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{margin:0;background:#6f7fe8}
+nav{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-weight:700;color:#ff4b4b}
+nav a{margin-left:15px;text-decoration:none;color:#555;font-weight:500}
 
 /* HERO */
 .hero{
   background:linear-gradient(135deg,#7c8cf0,#6b79df);
-  margin:15px;
-  border-radius:18px;
-  padding:25px;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  margin:15px;border-radius:18px;
+  padding:25px;color:#fff;
+  display:flex;justify-content:space-between;align-items:center
 }
-.hero-text h1{
-  font-size:28px;
-  margin:0 0 10px;
-}
-.hero-text p{
-  opacity:.9;
-}
+.hero img{width:150px;filter:drop-shadow(0 8px 15px rgba(0,0,0,.25))}
 .hero button{
-  background:#ff7a59;
-  border:none;
-  padding:10px 20px;
-  border-radius:20px;
-  color:#fff;
-  font-weight:600;
-  margin-top:10px;
-  cursor:pointer;
-}
-.hero img{
-  width:150px;
-  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.25));
+  background:#ff7a59;border:none;
+  padding:10px 20px;border-radius:20px;
+  color:#fff;font-weight:600;cursor:pointer
 }
 
 /* CARD */
-.card{
-  background:#fff;
-  margin:15px;
-  border-radius:18px;
-  padding:20px;
-}
-.card h2{
-  text-align:center;
-  color:#6b79df;
-}
-label{
-  font-weight:600;
-  display:block;
-  margin-top:15px;
-}
-input{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ddd;
-  margin-top:6px;
-}
+.card{background:#fff;margin:15px;border-radius:18px;padding:20px}
+.card h2{text-align:center;color:#6b79df}
 
-/* PACKAGES */
-.packages{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:15px;
-}
-.package{
-  border:2px solid #e6e6e6;
-  border-radius:14px;
-  padding:12px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s ease;
-}
-.package:hover{
-  transform:scale(1.03);
-}
-.package.active{
-  border-color:#6b79df;
+/* STEPS */
+.step{
   background:#f2f4ff;
-}
-.package img{
-  width:38px;
-}
-.package h3{
-  margin:8px 0 4px;
-}
-.package p{
-  margin:0;
-  color:#6b79df;
-  font-weight:600;
-}
-
-/* QR */
-.qr-box{
-  background:#fff;
+  border-left:5px solid #6b79df;
   padding:10px;
   border-radius:10px;
-  text-align:center;
   margin-top:15px;
 }
-.qr-box img{
-  width:180px;
+.step b{color:#6b79df}
+
+label{font-weight:600;display:block;margin-top:10px}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:6px}
+
+/* PACKAGES */
+.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+.package{
+  border:2px solid #e6e6e6;border-radius:14px;
+  padding:12px;text-align:center;cursor:pointer;
+  transition:.2s ease
 }
+.package:hover{transform:scale(1.03)}
+.package.active{border-color:#6b79df;background:#f2f4ff}
+.package img{width:36px}
+.package p{margin:4px 0 0;color:#6b79df;font-weight:600}
+
+/* QR */
+.qr-box{text-align:center;margin-top:10px}
+.qr-box img{width:180px;border-radius:10px}
 
 /* BUTTON */
 button.confirm{
-  background:#6b79df;
-  color:#fff;
-  font-weight:600;
-  border:none;
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  margin-top:12px;
-  cursor:pointer;
+  background:#6b79df;color:#fff;
+  font-weight:600;border:none;
+  width:100%;padding:12px;
+  border-radius:10px;margin-top:15px;
+  cursor:pointer
 }
 #thanks{
-  display:none;
-  color:#2ecc71;
-  font-weight:bold;
-  text-align:center;
-  margin-top:10px;
+  display:none;text-align:center;
+  font-weight:700;color:#2ecc71;
+  margin-top:15px;font-size:18px
 }
 
 /* MOBILE */
 @media(max-width:600px){
-  .hero{
-    flex-direction:column;
-    text-align:left;
-  }
-  .hero img{
-    margin-top:15px;
-  }
+  .hero{flex-direction:column}
+  .hero img{margin-top:15px}
 }
 </style>
 </head>
@@ -180,97 +93,84 @@ button.confirm{
 </nav>
 
 <div class="hero">
-  <div class="hero-text">
+  <div>
     <h1>Get Free Fire<br>Diamonds Instantly!</h1>
     <p>Fast, Safe & Reliable Top Up Service</p>
     <button>Top Up Now</button>
   </div>
-  <!-- DIAMOND IMAGE -->
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="Diamond">
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png">
 </div>
 
 <div class="card">
-  <h2>Top Up Your Account</h2>
+  <h2>Top Up Steps</h2>
 
-  <label>Player ID</label>
-  <input type="text" id="playerId" placeholder="Enter your Free Fire ID" required>
-
-  <label>Player Name (Optional)</label>
-  <input type="text" id="playerName" placeholder="Enter your in-game name">
-
-  <label>Select Diamond Package</label>
-  <div class="packages" id="packages"></div>
-
-  <div class="qr-box">
-    <b>Pay via eSewa</b><br>
-    <img src="eSewa_My_QR_9703078638.jpg" alt="eSewa QR">
-    <input type="file" id="screenshot" accept="image/*" style="margin-top:10px;">
+  <!-- STEP 1 -->
+  <div class="step">
+    <b>Step 1:</b> Select Diamond Package
+    <div class="packages" id="packages"></div>
   </div>
 
-  <button class="confirm" onclick="confirmOrder()">Confirm Order</button>
-  <div id="thanks">✅ Thank you! Order received.</div>
+  <!-- STEP 2 -->
+  <div class="step">
+    <b>Step 2:</b> Enter UID & Game Name
+    <label>Player UID</label>
+    <input type="text" id="uid" placeholder="Enter Free Fire UID">
+    <label>Game Name</label>
+    <input type="text" id="gname" placeholder="Enter Game Name">
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <b>Step 3:</b> Scan eSewa QR & Pay
+    <div class="qr-box">
+      <img src="eSewa_My_QR_9703078638.jpg">
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <b>Step 4:</b> Upload Payment Screenshot
+    <input type="file" id="screenshot" accept="image/*">
+  </div>
+
+  <button class="confirm" onclick="submitOrder()">Complete Order</button>
+  <div id="thanks">🎉 Thank You! Your order has been received.</div>
 </div>
 
 <script>
-const packagesData=[
-  ["115 Diamonds","Rs.100"],
-  ["240 Diamonds","Rs.200"],
-  ["355 Diamonds","Rs.295"],
-  ["480 Diamonds","Rs.395"],
-  ["610 Diamonds","Rs.530"],
-  ["850 Diamonds","Rs.710"],
-  ["965 Diamonds","Rs.810"],
-  ["1060 Diamonds","Rs.910"],
-  ["1240 Diamonds","Rs.1010"]
+const data=[
+ ["115 Diamonds","Rs.100"],["240 Diamonds","Rs.200"],
+ ["355 Diamonds","Rs.295"],["480 Diamonds","Rs.395"],
+ ["610 Diamonds","Rs.530"],["850 Diamonds","Rs.710"]
 ];
 
-const packagesDiv=document.getElementById("packages");
+let selected=false;
+const packDiv=document.getElementById("packages");
 
-packagesData.forEach((p,i)=>{
-  const div=document.createElement("div");
-  div.className="package"+(i==0?" active":"");
-  div.innerHTML=`
+data.forEach(p=>{
+  const d=document.createElement("div");
+  d.className="package";
+  d.innerHTML=`
     <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png">
-    <h3>${p[0]}</h3>
-    <p>${p[1]}</p>
-  `;
-  div.onclick=()=>selectPackage(div,p[0],p[1]);
-  packagesDiv.appendChild(div);
+    <h4>${p[0]}</h4>
+    <p>${p[1]}</p>`;
+  d.onclick=()=>{
+    document.querySelectorAll(".package").forEach(x=>x.classList.remove("active"));
+    d.classList.add("active");
+    selected=true;
+  };
+  packDiv.appendChild(d);
 });
 
-let selectedPackage=packagesData[0][0];
-let selectedAmount=packagesData[0][1];
-
-function selectPackage(el,pkg,amt){
-  document.querySelectorAll(".package").forEach(d=>d.classList.remove("active"));
-  el.classList.add("active");
-  selectedPackage=pkg;
-  selectedAmount=amt;
-}
-
-function confirmOrder(){
-  const id=document.getElementById("playerId").value;
-  const screenshot=document.getElementById("screenshot").files[0];
-
-  if(!id){
-    alert("Please enter your Free Fire ID");
-    return;
-  }
-  if(!screenshot){
-    alert("Please upload payment screenshot");
-    return;
-  }
+function submitOrder(){
+  if(!selected) return alert("Please select a diamond package");
+  if(!uid.value) return alert("Enter UID");
+  if(!gname.value) return alert("Enter Game Name");
+  if(!screenshot.files[0]) return alert("Upload payment screenshot");
 
   document.getElementById("thanks").style.display="block";
-
-  setTimeout(()=>{
-    document.getElementById("thanks").style.display="none";
-    document.getElementById("playerId").value="";
-    document.getElementById("playerName").value="";
-    document.getElementById("screenshot").value="";
-  },2000);
 }
 </script>
 
 </body>
-                                        </html>
+  </html>

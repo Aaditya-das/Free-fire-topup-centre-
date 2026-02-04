@@ -8,11 +8,10 @@
 <style>
 *{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 body{margin:0;background:#6f7fe8}
-nav{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
-nav .logo{font-weight:700;color:#ff4b4b}
-nav a{margin-left:15px;text-decoration:none;color:#555;font-weight:500}
 
-/* HERO */
+nav{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;color:#ff4b4b}
+
 .hero{
   background:linear-gradient(135deg,#7c8cf0,#6b79df);
   margin:15px;border-radius:18px;
@@ -20,60 +19,56 @@ nav a{margin-left:15px;text-decoration:none;color:#555;font-weight:500}
   display:flex;justify-content:space-between;align-items:center
 }
 .hero img{width:150px;filter:drop-shadow(0 8px 15px rgba(0,0,0,.25))}
-.hero button{
-  background:#ff7a59;border:none;
-  padding:10px 20px;border-radius:20px;
-  color:#fff;font-weight:600;cursor:pointer
-}
 
-/* CARD */
 .card{background:#fff;margin:15px;border-radius:18px;padding:20px}
 .card h2{text-align:center;color:#6b79df}
 
-/* STEPS */
 .step{
   background:#f2f4ff;
   border-left:5px solid #6b79df;
-  padding:10px;
+  padding:12px;
   border-radius:10px;
   margin-top:15px;
+  display:none;
 }
+.step.active{display:block}
 .step b{color:#6b79df}
 
-label{font-weight:600;display:block;margin-top:10px}
-input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:6px}
-
-/* PACKAGES */
 .packages{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
 .package{
-  border:2px solid #e6e6e6;border-radius:14px;
-  padding:12px;text-align:center;cursor:pointer;
-  transition:.2s ease
+  border:2px solid #e6e6e6;
+  border-radius:14px;
+  padding:12px;text-align:center;
+  cursor:pointer;transition:.2s
 }
 .package:hover{transform:scale(1.03)}
 .package.active{border-color:#6b79df;background:#f2f4ff}
 .package img{width:36px}
-.package p{margin:4px 0 0;color:#6b79df;font-weight:600}
+.package p{margin:4px 0;color:#6b79df;font-weight:600}
 
-/* QR */
-.qr-box{text-align:center;margin-top:10px}
-.qr-box img{width:180px;border-radius:10px}
+label{font-weight:600;display:block;margin-top:10px}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:6px}
 
-/* BUTTON */
-button.confirm{
+.qr-box{text-align:center}
+.qr-box img{width:180px;border-radius:10px;margin-top:10px}
+
+button{
   background:#6b79df;color:#fff;
-  font-weight:600;border:none;
-  width:100%;padding:12px;
-  border-radius:10px;margin-top:15px;
+  border:none;border-radius:10px;
+  padding:12px;width:100%;
+  margin-top:15px;font-weight:600;
   cursor:pointer
 }
+
 #thanks{
-  display:none;text-align:center;
-  font-weight:700;color:#2ecc71;
-  margin-top:15px;font-size:18px
+  display:none;
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  color:#2ecc71;
+  margin-top:20px
 }
 
-/* MOBILE */
 @media(max-width:600px){
   .hero{flex-direction:column}
   .hero img{margin-top:15px}
@@ -85,68 +80,66 @@ button.confirm{
 
 <nav>
   <div class="logo">🔥 Free Fire Top Up</div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Top Up</a>
-    <a href="#">Contact</a>
-  </div>
 </nav>
 
 <div class="hero">
   <div>
-    <h1>Get Free Fire<br>Diamonds Instantly!</h1>
-    <p>Fast, Safe & Reliable Top Up Service</p>
-    <button>Top Up Now</button>
+    <h1>Get Free Fire Diamonds</h1>
+    <p>Fast • Safe • Trusted</p>
   </div>
   <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png">
 </div>
 
 <div class="card">
-  <h2>Top Up Steps</h2>
+  <h2>Top Up Process</h2>
 
   <!-- STEP 1 -->
-  <div class="step">
+  <div class="step active" id="step1">
     <b>Step 1:</b> Select Diamond Package
     <div class="packages" id="packages"></div>
   </div>
 
   <!-- STEP 2 -->
-  <div class="step">
+  <div class="step" id="step2">
     <b>Step 2:</b> Enter UID & Game Name
     <label>Player UID</label>
-    <input type="text" id="uid" placeholder="Enter Free Fire UID">
+    <input id="uid" placeholder="Enter Free Fire UID">
     <label>Game Name</label>
-    <input type="text" id="gname" placeholder="Enter Game Name">
+    <input id="gname" placeholder="Enter Game Name">
+    <button onclick="goStep3()">Continue</button>
   </div>
 
   <!-- STEP 3 -->
-  <div class="step">
-    <b>Step 3:</b> Scan eSewa QR & Pay
+  <div class="step" id="step3">
+    <b>Step 3:</b> Scan QR & Pay
     <div class="qr-box">
       <img src="eSewa_My_QR_9703078638.jpg">
     </div>
+    <button onclick="goStep4()">I Have Paid</button>
   </div>
 
   <!-- STEP 4 -->
-  <div class="step">
+  <div class="step" id="step4">
     <b>Step 4:</b> Upload Payment Screenshot
     <input type="file" id="screenshot" accept="image/*">
+    <button onclick="submitOrder()">Submit Order</button>
   </div>
 
-  <button class="confirm" onclick="submitOrder()">Complete Order</button>
-  <div id="thanks">🎉 Thank You! Your order has been received.</div>
+  <div id="thanks">🎉 Thank you! Your order has been received.</div>
 </div>
 
 <script>
 const data=[
- ["115 Diamonds","Rs.100"],["240 Diamonds","Rs.200"],
- ["355 Diamonds","Rs.295"],["480 Diamonds","Rs.395"],
- ["610 Diamonds","Rs.530"],["850 Diamonds","Rs.710"]
+ ["115 Diamonds","Rs.100"],
+ ["240 Diamonds","Rs.200"],
+ ["355 Diamonds","Rs.295"],
+ ["480 Diamonds","Rs.395"],
+ ["610 Diamonds","Rs.530"]
 ];
 
-let selected=false;
-const packDiv=document.getElementById("packages");
+let selectedPackage="", selectedAmount="";
 
+const packDiv=document.getElementById("packages");
 data.forEach(p=>{
   const d=document.createElement("div");
   d.className="package";
@@ -157,20 +150,42 @@ data.forEach(p=>{
   d.onclick=()=>{
     document.querySelectorAll(".package").forEach(x=>x.classList.remove("active"));
     d.classList.add("active");
-    selected=true;
+    selectedPackage=p[0];
+    selectedAmount=p[1];
+    document.getElementById("step2").classList.add("active");
   };
   packDiv.appendChild(d);
 });
 
+function goStep3(){
+  if(!uid.value || !gname.value) return alert("Enter UID & Game Name");
+  document.getElementById("step3").classList.add("active");
+}
+
+function goStep4(){
+  document.getElementById("step4").classList.add("active");
+}
+
 function submitOrder(){
-  if(!selected) return alert("Please select a diamond package");
-  if(!uid.value) return alert("Enter UID");
-  if(!gname.value) return alert("Enter Game Name");
   if(!screenshot.files[0]) return alert("Upload payment screenshot");
 
-  document.getElementById("thanks").style.display="block";
+  const formData=new FormData();
+  formData.append("_subject","🔥 New Free Fire Order");
+  formData.append("Package",selectedPackage);
+  formData.append("Amount",selectedAmount);
+  formData.append("UID",uid.value);
+  formData.append("Game Name",gname.value);
+  formData.append("Screenshot",screenshot.files[0]);
+
+  fetch("https://formsubmit.co/ajax/aadityadas4000@gmail.com",{
+    method:"POST",
+    body:formData
+  }).then(()=>{
+    document.querySelectorAll(".step").forEach(s=>s.style.display="none");
+    document.getElementById("thanks").style.display="block";
+  });
 }
 </script>
 
 </body>
-  </html>
+</html>
